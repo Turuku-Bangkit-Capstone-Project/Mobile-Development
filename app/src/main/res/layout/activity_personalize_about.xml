@@ -63,7 +63,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/personalize_desc"
-                android:inputType="textEmailAddress"
+                android:inputType="number"
                 tools:ignore="SmallSp" />
 
             <Spinner
@@ -71,7 +71,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:padding="10dp"
                 android:textAlignment="center"
                 android:background="@drawable/rounded_edittext"
                 app:layout_constraintStart_toStartOf="parent"
