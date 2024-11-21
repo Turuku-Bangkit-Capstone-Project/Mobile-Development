@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Turuku</string>
+    <string name="welcome">Welcome to Turuku</string>
+    <string name="welcome_message">Glad to see you again! track your sleep, unlock insights, and continue your path to better rest and revitalized mornings</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="forgot_password"><b><u>Forgot Password?</u></b></string>
+    <string name="sign_up">Don\'t have an account? <b><u>Sign up</u></b></string>
+    <string name="get_started">Get Started</string>
+    <string name="sign_up_message">Be a part of Turuku</string>
+    <string name="sign_up_desc">Start Your Journey to Restful Nights, Sign Up Now!</string>
+    <string name="sign_up_name">Name</string>
+    <string name="sign_up_email">Email</string>
+    <string name="sign_up_password">Password</string>
+    <string name="sign_up_confirm_password">Confirm Password</string>
+    <string name="btn_sign_up">Sign Up</string>
+</resources>
