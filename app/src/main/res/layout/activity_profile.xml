@@ -1,0 +1,74 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    android:padding="35dp"
+    tools:context=".ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/dark_blue_verylow"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="start|center"
+            android:text="Profile Settings"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/dark_blue_verylow"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="start|center"
+            android:text="Security"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/dark_blue_verylow"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="start|center"
+            android:text="System Settings"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_blue_verylow"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="start|center"
+            android:text="Sign Out"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

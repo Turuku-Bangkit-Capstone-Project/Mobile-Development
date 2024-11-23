@@ -139,9 +139,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="25dp"
             android:fontFamily="@font/montserrat_reguler"
+            android:backgroundTint="@color/dark_blue_verylow"
             android:layout_weight="1"
             android:text="Set Waketime"
-            android:backgroundTint="@color/dark_blue_verylow"
             android:textColor="@color/white" />
     </LinearLayout>
 
