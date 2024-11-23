@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +16,21 @@
         android:theme="@style/Theme.Turuku"
         tools:targetApi="31">
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FinalPersonalize"
+            android:exported="false" />
+        <activity
+            android:name=".PersonalizeLifestyle"
+            android:exported="false" />
+        <activity
+            android:name=".PersonalizeWaketime"
+            android:exported="false" />
+        <activity
+            android:name=".PersonalizeBedtime"
+            android:exported="false" />
+        <activity
             android:name=".PersonalizeAboutActivity"
             android:exported="false" />
         <activity
@@ -22,7 +40,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

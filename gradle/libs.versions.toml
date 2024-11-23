@@ -11,6 +11,7 @@ activity = "1.9.3"
 constraintlayout = "2.2.0"
 navigationFragmentKtx = "2.8.4"
 navigationUiKtx = "2.8.4"
+repo = "Tag"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -23,6 +24,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
+repo = { module = "com.github.User:Repo", version.ref = "repo" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

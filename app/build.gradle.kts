@@ -36,7 +36,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
+
 
 dependencies {
 
@@ -53,4 +55,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Analogclock
+    dependencies {
+        implementation ("com.github.Jumman04:Analogue-Watch:4.2")
+    }
+
 }
+

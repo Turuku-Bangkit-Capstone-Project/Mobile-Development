@@ -3,6 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dark_intense_blue">#00101E</color>
-    <color name="dark_blue">#001322</color>
+    <color name="dark_blue">#141c29</color>
     <color name="dark_low_blue">#001628</color>
+    <color name="dark_blue_verylow">#1F2A40</color>
+    <color name="green">#FF00FF00</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="red_transparent">#00FF0000</color>
+    <color name="gray">#FF808080</color>
 </resources>
