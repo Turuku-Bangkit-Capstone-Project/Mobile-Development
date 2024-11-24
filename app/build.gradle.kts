@@ -58,7 +58,7 @@ dependencies {
 
     //Analogclock
     dependencies {
-        implementation ("com.github.Jumman04:Analogue-Watch:4.2")
+        implementation (libs.analogue.watch)
     }
 
 }

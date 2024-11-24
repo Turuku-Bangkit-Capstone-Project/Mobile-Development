@@ -1,5 +1,6 @@
 [versions]
 agp = "8.6.1"
+analogueWatch = "4.2"
 kotlin = "1.9.24"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -14,6 +15,7 @@ navigationUiKtx = "2.8.4"
 repo = "Tag"
 
 [libraries]
+analogue-watch = { module = "com.github.Jumman04:Analogue-Watch", version.ref = "analogueWatch" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
     android:padding="35dp"
-    tools:context=".PersonalizeMessage">
+    tools:context=".PersonalizeAboutActivity">
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.muhhlmy.turuku
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -19,5 +20,11 @@ class PersonalizeAboutActivity : AppCompatActivity() {
         val adapter = ArrayAdapter.createFromResource(this, R.array.gender_options,R.layout.spinner_item)
         adapter.setDropDownViewResource(R.layout.spinner_item)
         spinner.adapter = adapter
+
+        binding.btnContinue.setOnClickListener {
+            // Do something
+            val intent = Intent(this, PersonalizeBedtime::class.java)
+            startActivity(intent)
+        }
     }
 }
