@@ -1,14 +1,4 @@
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true">
-        <shape >
-            <corners android:radius="10dp" /> <!-- Sesuaikan radius -->
-            <solid android:color="@color/white" /> <!-- Warna latar belakang -->
-        </shape>
-    </item>
-    <item>
-        <shape>
-            <corners android:radius="10dp" /> <!-- Sesuaikan radius -->
-            <solid android:color="@color/white" /> <!-- Warna latar belakang -->
-        </shape>
-    </item>
-</selector>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/white" />
+    <corners android:radius="10dp" />
+</shape>

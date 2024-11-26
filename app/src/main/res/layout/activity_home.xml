@@ -7,193 +7,208 @@
     tools:context=".HomeActivity">
 
     <FrameLayout
-        android:id="@+id/AnalogClock"
-        android:layout_width="wrap_content"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_margin="10dp"
-            app:cardBackgroundColor="@color/cardview_dark_background"
-            app:cardCornerRadius="150dp"
-            app:cardElevation="20dp">
-
-            <com.jummania.AnalogClock
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:background_color="@color/dark_blue"
-                app:enable_hour_hand="true"
-                app:enable_hour_text="false"
-                app:enable_minute_hand="true"
-                app:enable_second_hand="false"
-                app:enable_sound="false"
-                app:fontFamily="sans-serif"
-                app:hour_hand_color="@color/white"
-                app:hour_hand_height="0.7"
-                app:hour_hand_width="0.08"
-                app:hour_marker="true"
-                app:hour_marker_color="@color/white"
-                app:hour_marker_height="0.15"
-                app:minute_hand_color="@color/white"
-                app:minute_hand_height="0.8"
-                app:minute_hand_width="0.06"
-                app:minute_marker="true"
-                app:minute_marker_color="@color/gray"
-                app:minute_marker_height="0.1"
-                app:second_hand_color="@color/blue"
-                app:second_hand_height="0.9"
-                app:second_hand_width="0.02"
-                app:textColor="@color/black"
-                app:textSize="14sp"
-                app:textStyle="normal" />
-
-        </androidx.cardview.widget.CardView>
-    </FrameLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/OptimalContainer"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="23dp"
-        android:backgroundTint="@color/dark_blue_verylow"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintTop_toBottomOf="@id/AnalogClock">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <FrameLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/AnalogClock"
+                android:layout_width="380dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <com.jummania.AnalogClock
+                    android:layout_gravity="center"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    app:background_color="@color/dark_blue"
+                    app:enable_hour_hand="true"
+                    app:enable_hour_text="false"
+                    app:enable_minute_hand="true"
+                    app:enable_second_hand="false"
+                    app:enable_sound="false"
+                    app:fontFamily="sans-serif"
+                    app:hour_hand_color="@color/white"
+                    app:hour_hand_height="0.7"
+                    app:hour_hand_width="0.08"
+                    app:hour_marker="true"
+                    app:hour_marker_color="@color/white"
+                    app:hour_marker_height="0.15"
+                    app:minute_hand_color="@color/white"
+                    app:minute_hand_height="0.8"
+                    app:minute_hand_width="0.06"
+                    app:minute_marker="true"
+                    app:minute_marker_color="@color/gray"
+                    app:minute_marker_height="0.1"
+                    app:second_hand_color="@color/blue"
+                    app:second_hand_height="0.9"
+                    app:second_hand_width="0.02"
+                    app:textColor="@color/black"
+                    app:textSize="14sp"
+                    app:textStyle="normal" />
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bedtimeOptimal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/dark_blue_verylow"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintEnd_toEndOf="@id/AnalogClock"
+                app:layout_constraintStart_toStartOf="@id/AnalogClock"
+                app:layout_constraintTop_toBottomOf="@id/AnalogClock">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="30dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sora_regular"
+                        android:text="Your optimal bedtime"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sora_bold"
+                        android:text="7 Hours, 30 Minutes"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/btnSleepNow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/dark_blue_verylow"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="@id/bedtimeOptimal"
+                app:layout_constraintStart_toStartOf="@id/bedtimeOptimal"
+                app:layout_constraintTop_toBottomOf="@id/bedtimeOptimal">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Sleep Icon"
+                    android:src="@drawable/baseline_notifications_active_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sora_bold"
+                    android:text="Sleep Now"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@id/btnSleepNow"
+                app:layout_constraintStart_toStartOf="@id/btnSleepNow"
+                app:layout_constraintTop_toBottomOf="@id/btnSleepNow">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/OptimalBedtime"
+                    <LinearLayout
+                        android:id="@+id/sleepPredict"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_reguler"
-                        android:text="Your Optimal Bedtime"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/sora_bold"
+                            android:text="20:30"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/baseline_arrow_right_24"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/sora_bold"
+                            android:text="02:30"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
 
                     <TextView
+                        android:id="@+id/timePredict"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="7 Hours, 30 minutes"
-                        android:textAlignment="center"
+                        android:text="Your Alarm wil ring at 02:30"
+                        app:layout_constraintTop_toBottomOf="@id/sleepPredict"
                         android:textColor="@color/white"
-                        android:textSize="25sp"
+                        android:fontFamily="@font/sora_bold"
+                        android:textSize="22sp"
+                        android:textAlignment="center"
+                        android:layout_marginTop="20dp"
+                        />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/rounded_button"
+                        android:fontFamily="@font/sora_regular"
+                        android:text="Customize Alarm"
+                        android:textSize="13sp"
+                        app:backgroundTint="@color/dark_blue_verylow"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/OptimalBedtime" />
+                        app:layout_constraintTop_toBottomOf="@id/timePredict" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </FrameLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 
 
-    <Button
-        android:id="@+id/SleepNowButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="23dp"
-        android:background="@drawable/roundedshape_profile"
-        android:backgroundTint="@color/dark_blue_verylow"
-        android:text="Sleep Now"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="17sp"
-        app:backgroundTint="@color/dark_blue_verylow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/OptimalContainer" />
+    </FrameLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/AlarmContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="23dp"
-        android:backgroundTint="@color/red_transparent"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="0dp"
-        app:layout_constraintTop_toBottomOf="@id/SleepNowButton">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/timedesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/montserrat_reguler"
-                    android:text="Bedtime"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:fontFamily="@font/montserrat_reguler"
-                    android:layout_gravity="end"
-                    android:text="Waketime"
-                    android:textColor="@color/white" />
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Your Alarm will ring on 07.30"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-
-            <Button
-                android:id="@+id/AlarmContainerButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="7dp"
-                android:background="@drawable/roundedshape_profile"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Customize Alarm"
-                app:backgroundTint="@color/dark_blue_verylow" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
