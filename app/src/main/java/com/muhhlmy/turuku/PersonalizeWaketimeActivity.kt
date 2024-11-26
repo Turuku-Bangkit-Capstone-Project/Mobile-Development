@@ -3,20 +3,20 @@ package com.muhhlmy.turuku
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.muhhlmy.turuku.databinding.ActivityFinalPersonalizeBinding
+import com.muhhlmy.turuku.databinding.ActivityPersonalizeWaketimeBinding
 
-class FinalPersonalize : AppCompatActivity() {
+class PersonalizeWaketimeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityFinalPersonalizeBinding
+    private lateinit var binding: ActivityPersonalizeWaketimeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFinalPersonalizeBinding.inflate(layoutInflater)
+        binding = ActivityPersonalizeWaketimeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnContinue.setOnClickListener {
             // Do something
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, PersonalizeLifestyleActivity::class.java)
             startActivity(intent)
         }
     }

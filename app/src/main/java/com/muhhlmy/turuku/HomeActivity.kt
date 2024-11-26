@@ -2,9 +2,8 @@ package com.muhhlmy.turuku
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.jummania.AnalogClock
+import androidx.navigation.fragment.findNavController
 import com.muhhlmy.turuku.databinding.ActivityHomeBinding
-
 
 class HomeActivity : AppCompatActivity() {
 
@@ -15,7 +14,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val analogClock: AnalogClock = AnalogClock(this)
-    }
 
+
+    }
 }

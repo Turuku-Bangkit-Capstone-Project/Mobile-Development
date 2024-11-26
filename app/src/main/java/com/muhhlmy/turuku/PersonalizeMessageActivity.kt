@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.muhhlmy.turuku.databinding.ActivityPersonalizeMessageBinding
 
-class PersonalizeMessage : AppCompatActivity() {
+class PersonalizeMessageActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityPersonalizeMessageBinding
 

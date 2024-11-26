@@ -9,10 +9,10 @@
     <FrameLayout
         android:layout_width="380dp"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,9 +27,9 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.jummania.AnalogClock
-                    android:layout_gravity="center"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
+                    android:layout_gravity="center"
                     app:background_color="@color/dark_blue"
                     app:enable_hour_hand="true"
                     app:enable_hour_text="false"
@@ -142,9 +142,9 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -159,7 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/baseline_arrow_right_24"/>
+                            android:src="@drawable/baseline_arrow_right_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -176,16 +176,16 @@
                         android:id="@+id/timePredict"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Your Alarm wil ring at 02:30"
-                        app:layout_constraintTop_toBottomOf="@id/sleepPredict"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/sora_bold"
-                        android:textSize="22sp"
-                        android:textAlignment="center"
                         android:layout_marginTop="20dp"
-                        />
+                        android:fontFamily="@font/sora_bold"
+                        android:text="Your Alarm wil ring at 02:30"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        app:layout_constraintTop_toBottomOf="@id/sleepPredict" />
 
                     <Button
+                        android:id="@+id/btnCustomizeAlarm"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:layout_marginTop="25dp"
@@ -198,6 +198,14 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/timePredict" />
 
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/nav_host_fragment"
+                        android:name="androidx.navigation.fragment.NavHostFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:defaultNavHost="true"
+                        app:navGraph="@navigation/main" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -208,7 +216,6 @@
 
 
     </FrameLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,22 +25,22 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".FinalPersonalize"
+            android:name=".FinalPersonalizeActivity"
             android:exported="false" />
         <activity
-            android:name=".PersonalizeLifestyle"
+            android:name=".PersonalizeLifestyleActivity"
             android:exported="false" />
         <activity
-            android:name=".PersonalizeWaketime"
+            android:name=".PersonalizeWaketimeActivity"
             android:exported="false" />
         <activity
-            android:name=".PersonalizeBedtime"
+            android:name=".PersonalizeBedtimeActivity"
             android:exported="false" />
         <activity
             android:name=".PersonalizeAboutActivity"
             android:exported="false" />
         <activity
-            android:name=".PersonalizeMessage"
+            android:name=".PersonalizeMessageActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"

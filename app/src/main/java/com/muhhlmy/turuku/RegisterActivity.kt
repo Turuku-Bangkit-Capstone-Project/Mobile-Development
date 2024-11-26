@@ -16,7 +16,7 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.btnSignUp.setOnClickListener {
             // Do something
-            startActivity(Intent(this, PersonalizeMessage::class.java))
+            startActivity(Intent(this, PersonalizeMessageActivity::class.java))
         }
     }
 }

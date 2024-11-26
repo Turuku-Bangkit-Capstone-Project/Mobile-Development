@@ -23,7 +23,7 @@ class PersonalizeAboutActivity : AppCompatActivity() {
 
         binding.btnContinue.setOnClickListener {
             // Do something
-            val intent = Intent(this, PersonalizeBedtime::class.java)
+            val intent = Intent(this, PersonalizeBedtimeActivity::class.java)
             startActivity(intent)
         }
     }

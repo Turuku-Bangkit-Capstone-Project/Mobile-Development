@@ -3,20 +3,20 @@ package com.muhhlmy.turuku
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.muhhlmy.turuku.databinding.ActivityPersonalizeLifestyleBinding
+import com.muhhlmy.turuku.databinding.ActivityFinalPersonalizeBinding
 
-class PersonalizeLifestyle : AppCompatActivity() {
+class FinalPersonalizeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityPersonalizeLifestyleBinding
+    private lateinit var binding: ActivityFinalPersonalizeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPersonalizeLifestyleBinding.inflate(layoutInflater)
+        binding = ActivityFinalPersonalizeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnContinue.setOnClickListener {
             // Do something
-            val intent = Intent(this, FinalPersonalize::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
     }
