@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sora_bold"
-                android:text="Welcome to Turuku!"
+                android:text="Be a Part of Turuku!"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/sora_regular"
-                android:text="Glad to see you again! track your sleep, unlock insights, and continue your path to better rest and revitalized mornings!"
+                android:text="Track your sleep, improve your health, and unlock better mornings. Let's get started!"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="11sp"
@@ -51,7 +51,7 @@
                 android:id="@+id/inputForm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="35dp"
                 android:orientation="vertical"
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,26 @@
                 app:layout_constraintTop_toBottomOf="@id/tvLoginDesc">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputLoginEmail"
+                    android:id="@+id/inputSignUpName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/input_background"
+                    android:drawableStart="@drawable/ic_person"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/sora_regular"
+                    android:gravity="center_vertical"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    android:textColor="@color/deepSea"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLoginDesc" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputSignUpEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
@@ -78,9 +97,10 @@
                     app:layout_constraintTop_toBottomOf="@id/tvLoginDesc" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputLoginPassword"
+                    android:id="@+id/inputSignUpPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
                     android:background="@drawable/input_background"
                     android:drawableStart="@drawable/ic_lock"
                     android:drawableEnd="@drawable/ic_visibility"
@@ -96,23 +116,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvLoginDesc" />
 
-                <TextView
-                    android:id="@+id/forgotPassword"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputSignUpConfirmPassword"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
+                    android:background="@drawable/input_background"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:drawableEnd="@drawable/ic_visibility"
+                    android:drawablePadding="8dp"
                     android:fontFamily="@font/sora_regular"
-                    android:text="@string/forgotPassword"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:gravity="center_vertical"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textColor="@color/deepSea"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLoginDesc" />
+
             </LinearLayout>
 
             <Button
-                android:id="@+id/getStartedButton"
+                android:id="@+id/signUpButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
@@ -122,27 +148,12 @@
                 android:fontFamily="@font/sora_bold"
                 android:minHeight="40dp"
                 android:padding="0dp"
-                android:text="Get Started"
+                android:text="Sign Up"
                 android:textColor="@color/deepSea"
                 app:backgroundTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/inputForm" />
-
-            <TextView
-                android:id="@+id/signUp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/sora_regular"
-                android:text="@string/sign_up"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/getStartedButton" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,0 @@
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape>
-            <corners android:radius="10dp" /> <!-- Sesuaikan radius -->
-            <solid android:color="@color/dark_blue_verylow" /> <!-- Warna latar belakang -->
-        </shape>
-    </item>
-</selector>

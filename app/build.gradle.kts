@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.muhhlmy.turuku"
+    namespace = "com.c242ps070.turuku"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.muhhlmy.turuku"
+        applicationId = "com.c242ps070.turuku"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

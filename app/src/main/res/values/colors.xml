@@ -10,4 +10,7 @@
     <color name="blue">#FF0000FF</color>
     <color name="red_transparent">#00FF0000</color>
     <color name="gray">#FF808080</color>
+    <color name="midnightBlue">#040E18</color>
+    <color name="deepSea">#001120</color>
+    <color name="oceanGreenBlue">#072334</color>
 </resources>

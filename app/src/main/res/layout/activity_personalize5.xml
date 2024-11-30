@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_gradient"
+    tools:context=".activity.Personalize5Activity">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvPersonalizeMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sora_bold"
+                android:text="You're All Set"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvPersonalizeDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/sora_regular"
+                android:text="Based on your inputs, we’ve decided that your Chronotype is..."
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:paddingStart="80dp"
+                android:paddingEnd="80dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPersonalizeMessage" />
+
+            <TextView
+                android:id="@+id/chronotypeResult"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Bear"
+                android:textColor="@color/white"
+                android:fontFamily="@font/sora_extrabold"
+                android:textSize="50sp"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPersonalizeDesc" />
+
+            <TextView
+                android:id="@+id/chronotypeDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="This means you are most alert during the day and sleep well at night."
+                android:textColor="@color/white"
+                android:fontFamily="@font/sora_light"
+                android:textSize="12sp"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chronotypeResult" />
+
+            <Button
+                android:id="@+id/btnContinueToHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/sora_bold"
+                android:minHeight="40dp"
+                android:padding="0dp"
+                android:text="Continue"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/deepSea"
+                app:backgroundTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chronotypeDesc" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
