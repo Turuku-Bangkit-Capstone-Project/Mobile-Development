@@ -20,7 +20,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tvPersonalizeMessage"
+                android:id="@+id/tvSetAlarmMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sora_bold"
@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvPersonalizeDesc"
+                android:id="@+id/tvSetAlarmDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -48,7 +48,7 @@
                 android:paddingEnd="80dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvPersonalizeMessage" />
+                app:layout_constraintTop_toBottomOf="@id/tvSetAlarmMessage" />
 
             <TextView
                 android:id="@+id/chronotypeResult"
@@ -62,7 +62,7 @@
                 android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPersonalizeDesc" />
+                app:layout_constraintTop_toBottomOf="@+id/tvSetAlarmDesc" />
 
             <TextView
                 android:id="@+id/chronotypeDesc"

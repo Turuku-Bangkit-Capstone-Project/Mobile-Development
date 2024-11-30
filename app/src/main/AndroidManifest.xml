@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Turuku"
         tools:targetApi="31">
         <activity
+            android:name=".activity.SetAlarmActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.Personalize5Activity"
             android:exported="false" />
         <activity

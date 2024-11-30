@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    tools:context=".activity.Personalize4Activity">
+    tools:context=".activity.SetAlarmActivity">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
                 android:fontFamily="@font/sora_bold"
                 android:paddingStart="50dp"
                 android:paddingEnd="50dp"
-                android:text="What time do you usually wake up?"
+                android:text="Set Your Alarm"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="25sp"
@@ -42,7 +42,7 @@
                 android:fontFamily="@font/sora_regular"
                 android:paddingStart="80dp"
                 android:paddingEnd="80dp"
-                android:text="This helps us understand your daily rhythm and improve your sleep cycle"
+                android:text="Based on your optimal bedtime, we recommend you to set your alarm time at"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="11sp"
@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvSetAlarmMessage" />
 
             <FrameLayout
-                android:id="@+id/inputAboutForm"
+                android:id="@+id/inputAlarmTime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -85,6 +85,21 @@
 
             </FrameLayout>
 
+            <TextView
+                android:id="@+id/tvAlarmTimeDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sora_regular"
+                android:paddingStart="80dp"
+                android:paddingEnd="80dp"
+                android:text="But you can customize it as you like :)"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputAlarmTime" />
+
             <Button
                 android:id="@+id/btnContinue"
                 android:layout_width="0dp"
@@ -95,12 +110,13 @@
                 android:fontFamily="@font/sora_bold"
                 android:minHeight="40dp"
                 android:padding="0dp"
+                android:layout_marginTop="20dp"
                 android:text="Continue"
                 android:textColor="@color/deepSea"
                 app:backgroundTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputAboutForm" />
+                app:layout_constraintTop_toBottomOf="@id/tvAlarmTimeDesc" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

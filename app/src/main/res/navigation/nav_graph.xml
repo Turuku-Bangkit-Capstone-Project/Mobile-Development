@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.c242ps070.turuku.dashboard_fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/staticsFragment"
+        android:name="com.c242ps070.turuku.dashboard_fragment.StaticsFragment"
+        android:label="fragment_statics"
+        tools:layout="@layout/fragment_statics" />
+    <fragment
+        android:id="@+id/preferencesFragment"
+        android:name="com.c242ps070.turuku.dashboard_fragment.PreferencesFragment"
+        android:label="fragment_preferences"
+        tools:layout="@layout/fragment_preferences" />
+</navigation>
