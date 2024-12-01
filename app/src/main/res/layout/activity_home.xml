@@ -25,7 +25,7 @@
         android:layout_gravity="bottom"
         android:background="@color/oceanGreenBlue"
         app:itemIconTint="@drawable/nav_item_color"
-        app:itemTextColor="@drawable/nav_item_color"
+        app:itemTextColor="@color/white"
         app:menu="@menu/bottom_nav_menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
