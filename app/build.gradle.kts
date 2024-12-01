@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -10,7 +11,7 @@ android {
     defaultConfig {
         applicationId = "com.c242ps070.turuku"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -57,9 +58,18 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     //Analogclock
-    dependencies {
-        implementation (libs.analogue.watch)
-    }
+    implementation (libs.analogue.watch)
 
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+    implementation(libs.logging.interceptor)
+
+    // Datastore
+    implementation(libs.datastore.preferences)
+
+    // Room
+    ksp(libs.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }
 
