@@ -8,6 +8,7 @@ import com.c242ps070.turuku.data.local.datastore.UserPreference
 import com.c242ps070.turuku.data.local.datastore.dataStore
 import com.c242ps070.turuku.data.repository.AuthRepository
 import com.c242ps070.turuku.viewmodel.LoginViewModel
+import com.c242ps070.turuku.viewmodel.SignUpViewModel
 
 class ViewModelFactory(
     private val authRepository: AuthRepository? = null,
@@ -17,6 +18,8 @@ class ViewModelFactory(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return authRepository?.let { LoginViewModel(it) } as T
+        } else if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
+            return authRepository?.let { SignUpViewModel(it) } as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
