@@ -2,6 +2,7 @@ package com.c242ps070.turuku.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.c242ps070.turuku.HomeActivity
@@ -66,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         } else {
-            // One or more fields are empty
+            Toast.makeText(this, "Email and password must not be empty", Toast.LENGTH_SHORT).show()
         }
     }
 }
