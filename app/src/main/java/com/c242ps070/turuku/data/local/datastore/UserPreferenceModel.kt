@@ -4,5 +4,5 @@ data class UserPreferenceModel(
     val id: Int? = null,
     val name: String? = null,
     val email: String? = null,
-    val token: String? = null
+    val token: String
 )
