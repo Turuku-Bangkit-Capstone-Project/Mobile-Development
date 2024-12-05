@@ -6,7 +6,7 @@
     android:background="@drawable/background_gradient"
     android:padding="25dp"
     tools:context=".activity.ProfileActivity">
-
+<!---->
     <TextView
         android:id="@+id/tvProfileTitle"
         android:layout_width="wrap_content"

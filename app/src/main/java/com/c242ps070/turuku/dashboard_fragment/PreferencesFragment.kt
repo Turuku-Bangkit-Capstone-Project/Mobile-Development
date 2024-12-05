@@ -14,7 +14,7 @@ import com.c242ps070.turuku.databinding.FragmentPreferencesBinding
 class PreferencesFragment : Fragment() {
     private var _binding: FragmentPreferencesBinding? = null
     private val binding get() = _binding!!
-
+//
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
