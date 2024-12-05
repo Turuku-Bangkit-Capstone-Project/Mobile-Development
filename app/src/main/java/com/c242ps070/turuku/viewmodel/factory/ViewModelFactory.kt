@@ -7,17 +7,23 @@ import com.c242ps070.turuku.data.di.Injection
 import com.c242ps070.turuku.data.local.datastore.UserPreference
 import com.c242ps070.turuku.data.local.datastore.dataStore
 import com.c242ps070.turuku.data.repository.AuthRepository
+import com.c242ps070.turuku.data.repository.UserRepository
 import com.c242ps070.turuku.viewmodel.LoginViewModel
 import com.c242ps070.turuku.viewmodel.SignUpViewModel
 
 class ViewModelFactory(
     private val authRepository: AuthRepository? = null,
+    private val userRepository: UserRepository? = null,
     private val userPreference: UserPreference? = null
 ): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return authRepository?.let { LoginViewModel(it) } as T
+            return authRepository?.let { authRepository ->
+                userPreference?.let { userPreference ->
+                    LoginViewModel(authRepository, userPreference)
+                }
+            } as T
         } else if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
             return authRepository?.let { SignUpViewModel(it) } as T
         }
@@ -36,6 +42,7 @@ class ViewModelFactory(
                 synchronized(ViewModelFactory::class.java) {
                     INSTANCE = ViewModelFactory(
                         Injection.provideAuthRepository(context),
+                        Injection.provideUserRepository(context),
                         UserPreference.getInstance(context.dataStore)
                     )
                 }
