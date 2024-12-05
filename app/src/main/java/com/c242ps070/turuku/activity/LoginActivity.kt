@@ -70,12 +70,10 @@ class LoginActivity : AppCompatActivity() {
 
                             ViewModelFactory.clearInstance()
                             initViewModel()
-                            viewModel.getUserLoggedIn().observe(this) { userLoggedIn ->
-                                if (userLoggedIn.token != null) refreshToken()
-                            }
+                            refreshToken()
                         }
                         is Result.Error -> {
-                            //Error
+                            Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -98,19 +96,17 @@ class LoginActivity : AppCompatActivity() {
                         )
                         viewModel.saveUserLoggedIn(userPreferenceModel)
                         ViewModelFactory.clearInstance()
-                        viewModel.getUserLoggedIn().observe(this) { userLoggedIn ->
-                            if (userLoggedIn.token != null) getUser()
-                        }
+                        getUser(result.data.accessToken)
                     }
                     is Result.Error -> {
-                        //Error
+                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
     }
 
-    private fun getUser() {
+    private fun getUser(accessToken: String) {
         viewModel.getUser().observe(this) { result ->
             if (result != null) {
                 when (result) {
@@ -120,7 +116,8 @@ class LoginActivity : AppCompatActivity() {
                     is Result.Success -> {
                         val userPreferenceModel = UserPreferenceModel(
                             id = 1, // ini contoh user id aja
-                            name = result.data.name
+                            name = result.data.name,
+                            token = accessToken
                         )
                         viewModel.saveUserLoggedIn(userPreferenceModel)
                         ViewModelFactory.clearInstance()
@@ -128,7 +125,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     is Result.Error -> {
-                        //Error
+                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
