@@ -16,6 +16,15 @@
         android:theme="@style/Theme.Turuku"
         tools:targetApi="31">
         <activity
+            android:name=".activity.SecurityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SetAlarmActivity"
             android:exported="false" />
         <activity
