@@ -2,8 +2,11 @@ package com.c242ps070.turuku.data.remote.retrofit
 
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.data.remote.request.RegisterRequest
+import com.c242ps070.turuku.data.remote.request.UserDataRequest
 import com.c242ps070.turuku.data.remote.response.LoginResponse
-import com.c242ps070.turuku.data.remote.response.RegisterResponse
+import com.c242ps070.turuku.data.remote.response.SuccessResponse
+import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
+import com.c242ps070.turuku.data.remote.response.UserDataResponse
 import com.c242ps070.turuku.data.remote.response.UserResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -19,7 +22,7 @@ interface ApiService {
     @POST("register")
     suspend fun register(
         @Body request: RegisterRequest
-    ): RegisterResponse
+    ): SuccessResponse
 
     @DELETE("logout")
     suspend fun logout()
@@ -29,4 +32,14 @@ interface ApiService {
 
     @GET("users")
     suspend fun getUsers(): UserResponse
+
+    @GET("userdata")
+    suspend fun getUserData(
+        @Body request: UserDataRequest
+    ): UserDataResponse
+
+    @POST("userdata")
+    suspend fun upsertUserData(
+        @Body request: UpsertUserDataRequest
+    ): SuccessResponse
 }
