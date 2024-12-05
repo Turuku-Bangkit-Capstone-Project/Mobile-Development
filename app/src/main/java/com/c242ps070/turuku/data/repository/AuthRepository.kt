@@ -11,13 +11,13 @@ import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.data.remote.response.ErrorResponse
 import com.c242ps070.turuku.data.remote.response.LoginResponse
-import com.c242ps070.turuku.data.remote.response.RegisterResponse
+import com.c242ps070.turuku.data.remote.response.SuccessResponse
 import com.c242ps070.turuku.data.remote.response.UserResponse
 
 class AuthRepository(
     private val apiService: ApiService
 ) {
-    fun register(registerRequest: RegisterRequest): LiveData<Result<RegisterResponse>> = liveData {
+    fun register(registerRequest: RegisterRequest): LiveData<Result<SuccessResponse>> = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.register(registerRequest)
