@@ -5,6 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AboutActivity">
+    tools:context=".activity.ChangepassActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,10 +16,10 @@
         android:theme="@style/Theme.Turuku"
         tools:targetApi="31">
         <activity
-            android:name=".activity.SecurityActivity"
+            android:name=".activity.ChangepassActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.AboutActivity"
+            android:name=".activity.DailyActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ProfileActivity"
