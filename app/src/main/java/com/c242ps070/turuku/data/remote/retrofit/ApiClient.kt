@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL = "https://prod-turuku-800638181621.asia-southeast2.run.app/"
+    private const val BASE_URL = "https://prod-turuku-800638181621.asia-southeast2.run.app/api/v1/"
 
     fun create(token: String): ApiService {
         return Retrofit.Builder()
