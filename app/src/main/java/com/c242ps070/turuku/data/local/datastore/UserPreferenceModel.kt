@@ -1,8 +1,8 @@
 package com.c242ps070.turuku.data.local.datastore
 
 data class UserPreferenceModel(
-    val id: String,
-    val name: String,
-    val email: String,
-    val token: String
+    val id: Int? = null,
+    val name: String? = null,
+    val email: String? = null,
+    val token: String? = null
 )
