@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.c242ps070.turuku.HomeActivity
 import com.c242ps070.turuku.data.Result
+import com.c242ps070.turuku.data.local.datastore.UserPreferenceModel
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.databinding.ActivityLoginBinding
 import com.c242ps070.turuku.viewmodel.LoginViewModel
@@ -22,8 +23,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //Initiate viewmodel
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
+        initViewModel()
 
         //Intent to HomeActivity
         binding.getStartedButton.setOnClickListener {
@@ -39,6 +39,11 @@ class LoginActivity : AppCompatActivity() {
         binding.getStartedButton.setOnClickListener {
             login()
         }
+    }
+
+    private fun initViewModel() {
+        val factory = ViewModelFactory.getInstance(this)
+        viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
     }
 
     private fun login() {
@@ -57,8 +62,17 @@ class LoginActivity : AppCompatActivity() {
                             //Loading
                         }
                         is Result.Success -> {
-                            val intent = Intent(this, Personalize1Activity::class.java)
-                            startActivity(intent)
+                            val userPreferenceModel = UserPreferenceModel(
+                                email = email,
+                                token = result.data.accessToken
+                            )
+                            viewModel.saveUserLoggedIn(userPreferenceModel)
+
+                            ViewModelFactory.clearInstance()
+                            initViewModel()
+                            viewModel.getUserLoggedIn().observe(this) { userLoggedIn ->
+                                if (userLoggedIn.token != null) refreshToken()
+                            }
                         }
                         is Result.Error -> {
                             //Error
@@ -68,6 +82,56 @@ class LoginActivity : AppCompatActivity() {
             }
         } else {
             Toast.makeText(this, "Email and password must not be empty", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun refreshToken() {
+        viewModel.refreshToken().observe(this) { result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> {
+                        //Loading
+                    }
+                    is Result.Success -> {
+                        val userPreferenceModel = UserPreferenceModel(
+                            token = result.data.accessToken
+                        )
+                        viewModel.saveUserLoggedIn(userPreferenceModel)
+                        ViewModelFactory.clearInstance()
+                        viewModel.getUserLoggedIn().observe(this) { userLoggedIn ->
+                            if (userLoggedIn.token != null) getUser()
+                        }
+                    }
+                    is Result.Error -> {
+                        //Error
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getUser() {
+        viewModel.getUser().observe(this) { result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> {
+                        //Loading
+                    }
+                    is Result.Success -> {
+                        val userPreferenceModel = UserPreferenceModel(
+                            id = 1, // ini contoh user id aja
+                            name = result.data.name
+                        )
+                        viewModel.saveUserLoggedIn(userPreferenceModel)
+                        ViewModelFactory.clearInstance()
+                        val intent = Intent(this, Personalize1Activity::class.java)
+                        startActivity(intent)
+                    }
+                    is Result.Error -> {
+                        //Error
+                    }
+                }
+            }
         }
     }
 }
