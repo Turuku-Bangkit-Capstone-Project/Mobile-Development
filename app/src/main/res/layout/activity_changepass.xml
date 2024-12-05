@@ -35,7 +35,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputSignUpEmail"
+                    android:id="@+id/inputOldPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
@@ -54,7 +54,7 @@
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputSignUpPassword"
+                    android:id="@+id/inputNewPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
@@ -73,7 +73,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputSignUpConfirmPassword"
+                    android:id="@+id/inputConfirmPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/input_background"

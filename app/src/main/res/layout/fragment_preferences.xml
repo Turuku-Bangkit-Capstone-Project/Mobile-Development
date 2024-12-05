@@ -33,7 +33,7 @@
             />
 
         <Button
-            android:id="@+id/btnSecurity"
+            android:id="@+id/btnDailyActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Daily Activity"
@@ -47,7 +47,7 @@
             />
 
         <Button
-            android:id="@+id/btnAbout"
+            android:id="@+id/btnChangepass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Change Password"
