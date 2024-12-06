@@ -115,7 +115,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     is Result.Success -> {
                         val userPreferenceModel = UserPreferenceModel(
-                            id = 1, // ini contoh user id aja
+                            id = result.data.id,
                             name = result.data.name,
                             token = accessToken
                         )
