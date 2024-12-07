@@ -9,7 +9,9 @@ import com.c242ps070.turuku.data.local.datastore.dataStore
 import com.c242ps070.turuku.data.repository.AuthRepository
 import com.c242ps070.turuku.data.repository.UserRepository
 import com.c242ps070.turuku.viewmodel.LoginViewModel
+import com.c242ps070.turuku.viewmodel.Personalize2ViewModel
 import com.c242ps070.turuku.viewmodel.SignUpViewModel
+import com.c242ps070.turuku.viewmodel.SplashScreenViewModel
 
 class ViewModelFactory(
     private val authRepository: AuthRepository? = null,
@@ -26,6 +28,10 @@ class ViewModelFactory(
             } as T
         } else if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
             return authRepository?.let { SignUpViewModel(it) } as T
+        } else if (modelClass.isAssignableFrom(SplashScreenViewModel::class.java)) {
+            return userPreference?.let { SplashScreenViewModel(it) } as T
+        } else if (modelClass.isAssignableFrom(Personalize2ViewModel::class.java)) {
+            return userPreference?.let { Personalize2ViewModel(it) } as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
