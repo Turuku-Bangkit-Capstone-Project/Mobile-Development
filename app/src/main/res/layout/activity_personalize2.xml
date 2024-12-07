@@ -138,23 +138,16 @@
                     android:id="@+id/inputGender"
                     android:layout_width="match_parent"
                     android:layout_height="39dp"
-                    android:hint="@string/select_item"
-                    style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                    android:background="@drawable/input_background"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:backgroundTint="@color/white">
+                    android:padding="0dp"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="0dp"
                         android:inputType="none"
-                        android:fontFamily="@font/sora_regular"
-                        android:textSize="13sp"
-                        android:layout_gravity="center"
-                        android:textAlignment="center"
-                        android:background="@drawable/input_background"
-                        android:backgroundTint="@color/white"/>
+                        android:text="@string/select_item"
+                        android:background="@drawable/input_background"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
