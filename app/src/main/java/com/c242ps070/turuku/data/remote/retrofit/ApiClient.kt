@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
     private const val BASE_URL = "https://prod-turuku-800638181621.asia-southeast2.run.app/api/v1/"
+    private const val ML_BASE_URL = "http://localhost:3000/"
 
     fun create(token: String): ApiService {
         return Retrofit.Builder()
@@ -16,6 +17,15 @@ object ApiClient {
             .client(okHttpClient(token))
             .build()
             .create(ApiService::class.java)
+    }
+
+    fun createForML(token: String): MLApiService {
+        return Retrofit.Builder()
+            .baseUrl(ML_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient(token))
+            .build()
+            .create(MLApiService::class.java)
     }
 
     private fun okHttpClient(token: String): OkHttpClient {
