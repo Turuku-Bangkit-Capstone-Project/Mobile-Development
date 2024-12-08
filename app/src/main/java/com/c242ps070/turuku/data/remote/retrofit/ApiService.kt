@@ -1,8 +1,10 @@
 package com.c242ps070.turuku.data.remote.retrofit
 
+import com.c242ps070.turuku.data.remote.request.HistoryRequest
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.data.remote.request.RegisterRequest
 import com.c242ps070.turuku.data.remote.request.UserDataRequest
+import com.c242ps070.turuku.data.remote.response.HistoryResponse
 import com.c242ps070.turuku.data.remote.response.LoginResponse
 import com.c242ps070.turuku.data.remote.response.SuccessResponse
 import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
@@ -41,5 +43,13 @@ interface ApiService {
     @POST("userdata")
     suspend fun upsertUserData(
         @Body request: UpsertUserDataRequest
+    ): SuccessResponse
+
+    @GET("history")
+    suspend fun getHistory(): List<HistoryResponse>
+
+    @POST("history")
+    suspend fun addHistory(
+        @Body request: HistoryRequest
     ): SuccessResponse
 }
