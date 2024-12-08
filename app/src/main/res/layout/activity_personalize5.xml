@@ -50,19 +50,46 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSetAlarmMessage" />
 
-            <TextView
-                android:id="@+id/chronotypeResult"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Bear"
-                android:textColor="@color/white"
-                android:fontFamily="@font/sora_extrabold"
-                android:textSize="50sp"
-                android:layout_marginTop="20dp"
-                android:textAlignment="center"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_result"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/tvSetAlarmDesc"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSetAlarmDesc" />
+                android:layout_marginTop="20dp">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:indeterminate="true"
+                    app:indicatorColor="@color/white"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
+                <TextView
+                    android:id="@+id/chronotypeResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Bear"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sora_extrabold"
+                    android:textSize="50sp"
+                    android:textAlignment="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/chronotypeDesc"
@@ -74,11 +101,11 @@
                 android:textSize="12sp"
                 android:paddingStart="50dp"
                 android:paddingEnd="50dp"
-                android:layout_marginTop="20dp"
                 android:textAlignment="center"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chronotypeResult" />
+                app:layout_constraintTop_toBottomOf="@+id/ll_result" />
 
             <Button
                 android:id="@+id/btnContinueToHome"
