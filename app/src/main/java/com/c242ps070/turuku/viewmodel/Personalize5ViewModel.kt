@@ -9,11 +9,15 @@ import com.c242ps070.turuku.data.local.datastore.UserPreference
 import com.c242ps070.turuku.data.local.datastore.UserPreferenceModel
 import com.c242ps070.turuku.data.remote.request.ChronotypeRequest
 import com.c242ps070.turuku.data.remote.response.ChronotypeResponse
+import com.c242ps070.turuku.data.remote.response.SuccessResponse
+import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
 import com.c242ps070.turuku.data.repository.MachineLearningRepository
+import com.c242ps070.turuku.data.repository.UserRepository
 import kotlinx.coroutines.launch
 
 class Personalize5ViewModel(
     private val machineLearningRepository: MachineLearningRepository,
+    private val userRepository: UserRepository,
     private val userPreference: UserPreference
 ): ViewModel() {
     fun getChronotype(request: ChronotypeRequest): LiveData<Result<ChronotypeResponse>> =
@@ -26,4 +30,8 @@ class Personalize5ViewModel(
             userPreference.saveChronotype(chronotype)
         }
     }
+
+    fun insertUserData(
+        request: UpsertUserDataRequest
+    ): LiveData<Result<SuccessResponse>> = userRepository.upsertUserData(request)
 }
