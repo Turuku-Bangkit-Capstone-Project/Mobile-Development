@@ -21,6 +21,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     private val USER_GENDER = stringPreferencesKey(GENDER)
     private val USER_BEDTIME = stringPreferencesKey(BEDTIME)
     private val USER_WAKEUPTIME = stringPreferencesKey(WAKEUPTIME)
+    private val USER_CHRONOTYPE = stringPreferencesKey(CHRONOTYPE)
 
     fun getUser(): Flow<UserPreferenceModel> {
         return dataStore.data.map { preferences ->
@@ -72,6 +73,12 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    suspend fun saveChronotype(chronotype: String) {
+        dataStore.edit { preferences ->
+            preferences[USER_CHRONOTYPE] = chronotype
+        }
+    }
+
     suspend fun delete() {
         dataStore.edit { preferences ->
             preferences.clear()
@@ -98,5 +105,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         const val GENDER = "gender"
         const val BEDTIME = "bedTime"
         const val WAKEUPTIME = "wakeupTime"
+        const val CHRONOTYPE = "chronotype"
     }
 }
