@@ -9,7 +9,6 @@ import com.c242ps070.turuku.data.remote.response.LoginResponse
 import com.c242ps070.turuku.data.remote.response.SuccessResponse
 import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
 import com.c242ps070.turuku.data.remote.response.UserDataResponse
-import com.c242ps070.turuku.data.remote.response.UserResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -31,9 +30,6 @@ interface ApiService {
 
     @GET("token")
     suspend fun refreshToken(): LoginResponse
-
-    @GET("users")
-    suspend fun getUsers(): UserResponse
 
     @GET("userdata")
     suspend fun getUserData(
