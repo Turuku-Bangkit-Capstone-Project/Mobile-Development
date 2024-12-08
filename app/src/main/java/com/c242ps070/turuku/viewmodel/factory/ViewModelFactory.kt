@@ -7,6 +7,7 @@ import com.c242ps070.turuku.data.di.Injection
 import com.c242ps070.turuku.data.local.datastore.UserPreference
 import com.c242ps070.turuku.data.local.datastore.dataStore
 import com.c242ps070.turuku.data.repository.AuthRepository
+import com.c242ps070.turuku.data.repository.MachineLearningRepository
 import com.c242ps070.turuku.data.repository.UserRepository
 import com.c242ps070.turuku.viewmodel.LoginViewModel
 import com.c242ps070.turuku.viewmodel.Personalize2ViewModel
@@ -19,6 +20,7 @@ import com.c242ps070.turuku.viewmodel.SplashScreenViewModel
 class ViewModelFactory(
     private val authRepository: AuthRepository? = null,
     private val userRepository: UserRepository? = null,
+    private val machineLearningRepository: MachineLearningRepository? = null,
     private val userPreference: UserPreference? = null
 ): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -40,7 +42,11 @@ class ViewModelFactory(
         } else if (modelClass.isAssignableFrom(Personalize4ViewModel::class.java)) {
             return userPreference?.let { Personalize4ViewModel(it) } as T
         } else if (modelClass.isAssignableFrom(Personalize5ViewModel::class.java)) {
-            return userPreference?.let { Personalize5ViewModel(it) } as T
+            return machineLearningRepository?.let { machineLearningRepository ->
+                userPreference?.let { userPreference ->
+                    Personalize5ViewModel(machineLearningRepository, userPreference)
+                }
+            } as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
@@ -58,6 +64,7 @@ class ViewModelFactory(
                     INSTANCE = ViewModelFactory(
                         Injection.provideAuthRepository(context),
                         Injection.provideUserRepository(context),
+                        Injection.provideMLRepository(context),
                         UserPreference.getInstance(context.dataStore)
                     )
                 }
