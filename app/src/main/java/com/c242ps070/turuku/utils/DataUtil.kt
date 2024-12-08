@@ -7,7 +7,7 @@ fun getSleepHour(bedTime: String): Int {
     return bedTime.split(":")[0].toInt()
 }
 
-fun getSleepDuration(bedTime: String, wakeupTime: String): Long {
+fun getSleepDuration(bedTime: String, wakeupTime: String): Int {
     val format = SimpleDateFormat("HH:mm", Locale.getDefault())
 
     val bedTimeDate = format.parse(bedTime)
@@ -18,5 +18,5 @@ fun getSleepDuration(bedTime: String, wakeupTime: String): Long {
         duration += 24 * 60 * 60 * 1000
     }
 
-    return duration / (60 * 60 * 1000)
+    return (duration / (60 * 60 * 1000)).toInt()
 }
