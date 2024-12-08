@@ -12,6 +12,7 @@ import com.c242ps070.turuku.viewmodel.LoginViewModel
 import com.c242ps070.turuku.viewmodel.Personalize2ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize3ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize4ViewModel
+import com.c242ps070.turuku.viewmodel.Personalize5ViewModel
 import com.c242ps070.turuku.viewmodel.SignUpViewModel
 import com.c242ps070.turuku.viewmodel.SplashScreenViewModel
 
@@ -38,6 +39,8 @@ class ViewModelFactory(
             return userPreference?.let { Personalize3ViewModel(it) } as T
         } else if (modelClass.isAssignableFrom(Personalize4ViewModel::class.java)) {
             return userPreference?.let { Personalize4ViewModel(it) } as T
+        } else if (modelClass.isAssignableFrom(Personalize5ViewModel::class.java)) {
+            return userPreference?.let { Personalize5ViewModel(it) } as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
