@@ -47,7 +47,7 @@ class Personalize2Activity : AppCompatActivity() {
 
     private fun saveAgeAndGender() {
         val age = binding.inputAge.text.toString()
-        val gender = binding.inputGender.editText?.text.toString()
+        val gender = if (binding.inputGender.editText?.text.toString() == "Male") "1" else "0"
 
         if (age.isNotEmpty()) {
             viewModel.saveAgeAndGender(age.toInt(), gender)
