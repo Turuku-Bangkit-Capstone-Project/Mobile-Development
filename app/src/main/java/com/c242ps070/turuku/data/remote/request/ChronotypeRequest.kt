@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class ChronotypeRequest(
     @SerializedName("bedtime_hour")
-    val bedtimeHour: String,
+    val bedtimeHour: Int,
 
     @SerializedName("wakeup_hour")
-    val wakeupHour: String
+    val wakeupHour: Int
 )
