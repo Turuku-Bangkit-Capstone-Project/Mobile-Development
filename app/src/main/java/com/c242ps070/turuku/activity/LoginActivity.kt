@@ -63,6 +63,8 @@ class LoginActivity : AppCompatActivity() {
                         }
                         is Result.Success -> {
                             val userPreferenceModel = UserPreferenceModel(
+                                id = result.data.userId,
+                                name = result.data.name,
                                 email = email,
                                 token = result.data.accessToken
                             )
@@ -96,31 +98,7 @@ class LoginActivity : AppCompatActivity() {
                         )
                         viewModel.saveUserLoggedIn(userPreferenceModel)
                         ViewModelFactory.clearInstance()
-                        getUser(result.data.accessToken)
-                    }
-                    is Result.Error -> {
-                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
-    }
 
-    private fun getUser(accessToken: String) {
-        viewModel.getUser().observe(this) { result ->
-            if (result != null) {
-                when (result) {
-                    is Result.Loading -> {
-                        //Loading
-                    }
-                    is Result.Success -> {
-                        val userPreferenceModel = UserPreferenceModel(
-                            id = result.data.id,
-                            name = result.data.name,
-                            token = accessToken
-                        )
-                        viewModel.saveUserLoggedIn(userPreferenceModel)
-                        ViewModelFactory.clearInstance()
                         val intent = Intent(this, Personalize1Activity::class.java)
                         startActivity(intent)
                     }
