@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.c242ps070.turuku.HomeActivity
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.remote.request.ChronotypeRequest
+import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
 import com.c242ps070.turuku.databinding.ActivityPersonalize5Binding
 import com.c242ps070.turuku.utils.getSleepDuration
 import com.c242ps070.turuku.utils.getSleepHour
@@ -51,15 +52,40 @@ class Personalize5Activity : AppCompatActivity() {
                         when (result) {
                             is Result.Loading -> showLoading(true)
                             is Result.Success -> {
-                                showLoading(false)
                                 viewModel.saveChronotype(result.data.chronotype)
                                 binding.chronotypeResult.text = result.data.chronotype
+
+                                val userData = UpsertUserDataRequest(
+                                    id = user.id,
+                                    age = user.age,
+                                    gender = user.gender,
+                                    bedTime = user.bedTime,
+                                    wakeupTime = user.wakeupTime
+                                )
+                                insertUserData(userData)
                             }
                             is Result.Error -> {
                                 showLoading(false)
                                 Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun insertUserData(userDataRequest: UpsertUserDataRequest) {
+        viewModel.insertUserData(userDataRequest).observe(this) { result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> showLoading(true)
+                    is Result.Success -> {
+                        showLoading(false)
+                    }
+                    is Result.Error -> {
+                        showLoading(false)
+                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
