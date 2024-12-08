@@ -43,8 +43,10 @@ class ViewModelFactory(
             return userPreference?.let { Personalize4ViewModel(it) } as T
         } else if (modelClass.isAssignableFrom(Personalize5ViewModel::class.java)) {
             return machineLearningRepository?.let { machineLearningRepository ->
-                userPreference?.let { userPreference ->
-                    Personalize5ViewModel(machineLearningRepository, userPreference)
+                userRepository?.let { userRepository ->
+                    userPreference?.let { userPreference ->
+                        Personalize5ViewModel(machineLearningRepository, userRepository, userPreference)
+                    }
                 }
             } as T
         }
