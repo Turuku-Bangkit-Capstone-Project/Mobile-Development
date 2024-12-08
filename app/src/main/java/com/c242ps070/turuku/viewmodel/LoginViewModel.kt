@@ -9,7 +9,6 @@ import com.c242ps070.turuku.data.local.datastore.UserPreference
 import com.c242ps070.turuku.data.local.datastore.UserPreferenceModel
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.data.remote.response.LoginResponse
-import com.c242ps070.turuku.data.remote.response.UserResponse
 import com.c242ps070.turuku.data.repository.AuthRepository
 import kotlinx.coroutines.launch
 
@@ -21,8 +20,6 @@ class LoginViewModel(
         authRepository.login(loginRequest)
 
     fun refreshToken(): LiveData<Result<LoginResponse>> = authRepository.refreshToken()
-
-    fun getUser(): LiveData<Result<UserResponse>> = authRepository.getUser()
 
     fun saveUserLoggedIn(userPreferenceModel: UserPreferenceModel) {
         viewModelScope.launch {
