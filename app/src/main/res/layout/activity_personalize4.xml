@@ -50,40 +50,45 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSetAlarmMessage" />
 
-            <FrameLayout
-                android:id="@+id/inputAboutForm"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/ll_time_picker"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="125dp"
-                android:paddingEnd="125dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/tvSetAlarmDesc"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSetAlarmDesc">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingVertical="20dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <TextView
+                    android:id="@+id/tv_time"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    tools:text="05:00"
+                    android:fontFamily="@font/sora_bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="12dp"
+                    android:textSize="32sp"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
 
-                    <NumberPicker
-                        android:id="@+id/numberPickerHours"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <Button
+                    android:id="@+id/btnPickTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginEnd="35dp"
+                    android:background="@drawable/button_background"
+                    android:fontFamily="@font/sora_bold"
+                    android:minHeight="40dp"
+                    android:paddingHorizontal="20dp"
+                    android:text="Pick a time"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/deepSea"
+                    app:backgroundTint="@color/white" />
 
-                    <NumberPicker
-                        android:id="@+id/numberPickerMinutes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </FrameLayout>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btnContinue"
@@ -100,7 +105,7 @@
                 app:backgroundTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputAboutForm" />
+                app:layout_constraintTop_toBottomOf="@id/ll_time_picker" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
