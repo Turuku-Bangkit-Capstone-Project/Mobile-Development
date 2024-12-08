@@ -7,7 +7,7 @@ data class UpsertUserDataRequest(
     val id: Int? = null,
 
     @SerializedName("age")
-    val age: String? = null,
+    val age: Int? = null,
 
     @SerializedName("gender")
     val gender: String? = null,
