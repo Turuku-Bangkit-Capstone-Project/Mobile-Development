@@ -9,6 +9,7 @@ import com.c242ps070.turuku.data.local.datastore.dataStore
 import com.c242ps070.turuku.data.repository.AuthRepository
 import com.c242ps070.turuku.data.repository.MachineLearningRepository
 import com.c242ps070.turuku.data.repository.UserRepository
+import com.c242ps070.turuku.viewmodel.HomeViewModel
 import com.c242ps070.turuku.viewmodel.LoginViewModel
 import com.c242ps070.turuku.viewmodel.Personalize2ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize3ViewModel
@@ -46,6 +47,14 @@ class ViewModelFactory(
                 userRepository?.let { userRepository ->
                     userPreference?.let { userPreference ->
                         Personalize5ViewModel(machineLearningRepository, userRepository, userPreference)
+                    }
+                }
+            } as T
+        } else if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
+            return machineLearningRepository?.let { machineLearningRepository ->
+                userRepository?.let { userRepository ->
+                    userPreference?.let { userPreference ->
+                        HomeViewModel(machineLearningRepository, userRepository, userPreference)
                     }
                 }
             } as T
