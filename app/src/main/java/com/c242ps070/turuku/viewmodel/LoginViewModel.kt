@@ -19,8 +19,6 @@ class LoginViewModel(
     fun login(loginRequest: LoginRequest): LiveData<Result<LoginResponse>> =
         authRepository.login(loginRequest)
 
-    fun refreshToken(): LiveData<Result<LoginResponse>> = authRepository.refreshToken()
-
     fun saveUserLoggedIn(userPreferenceModel: UserPreferenceModel) {
         viewModelScope.launch {
             userPreference.saveUser(userPreferenceModel)
