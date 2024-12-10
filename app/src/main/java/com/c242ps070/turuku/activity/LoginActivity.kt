@@ -89,24 +89,32 @@ class LoginActivity : AppCompatActivity() {
         viewModel.refreshToken().observe(this) { result ->
             if (result != null) {
                 when (result) {
-                    is Result.Loading -> {
-                        //Loading
-                    }
+                    is Result.Loading -> showLoading(true)
                     is Result.Success -> {
                         val userPreferenceModel = UserPreferenceModel(
                             token = result.data.accessToken
                         )
                         viewModel.saveUserLoggedIn(userPreferenceModel)
                         ViewModelFactory.clearInstance()
+                        showLoading(false)
 
                         val intent = Intent(this, Personalize1Activity::class.java)
                         startActivity(intent)
                     }
                     is Result.Error -> {
                         Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                        showLoading(false)
                     }
                 }
             }
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.inputLoginEmail.isEnabled = !isLoading
+        binding.inputLoginPassword.isEnabled = !isLoading
+        binding.getStartedButton.isEnabled = !isLoading
+        binding.getStartedButton.text = if (isLoading) "Signing in..." else "Get Started"
+        binding.signUp.isEnabled = !isLoading
     }
 }
