@@ -31,9 +31,6 @@
             android:name=".activity.ChangepassActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.DailyActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.ProfileActivity"
             android:exported="false" />
         <activity
