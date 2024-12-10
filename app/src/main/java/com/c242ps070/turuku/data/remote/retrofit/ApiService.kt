@@ -4,9 +4,11 @@ import com.c242ps070.turuku.data.remote.request.HistoryRequest
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.data.remote.request.RegisterRequest
 import com.c242ps070.turuku.data.remote.request.UserDataRequest
+import com.c242ps070.turuku.data.remote.response.ChronotypeResponse
 import com.c242ps070.turuku.data.remote.response.HistoryResponse
 import com.c242ps070.turuku.data.remote.response.LoginResponse
 import com.c242ps070.turuku.data.remote.response.RefreshTokenResponse
+import com.c242ps070.turuku.data.remote.response.SleepRecommendationResponse
 import com.c242ps070.turuku.data.remote.response.SuccessResponse
 import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
 import com.c242ps070.turuku.data.remote.response.UserDataResponse
@@ -49,4 +51,10 @@ interface ApiService {
     suspend fun addHistory(
         @Body request: HistoryRequest
     ): SuccessResponse
+
+    @POST("chronotype")
+    suspend fun chronotype(): ChronotypeResponse
+
+    @POST("sleeprecomendation")
+    suspend fun sleepRecommendation(): SleepRecommendationResponse
 }
