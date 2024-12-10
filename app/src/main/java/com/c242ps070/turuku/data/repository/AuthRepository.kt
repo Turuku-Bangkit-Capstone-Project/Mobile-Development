@@ -11,6 +11,7 @@ import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.data.remote.response.ErrorResponse
 import com.c242ps070.turuku.data.remote.response.LoginResponse
+import com.c242ps070.turuku.data.remote.response.RefreshTokenResponse
 import com.c242ps070.turuku.data.remote.response.SuccessResponse
 
 class AuthRepository(
@@ -50,7 +51,7 @@ class AuthRepository(
 
     suspend fun logout() = apiService.logout()
 
-    fun refreshToken(): LiveData<Result<LoginResponse>> = liveData {
+    fun refreshToken(): LiveData<Result<RefreshTokenResponse>> = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.refreshToken()
