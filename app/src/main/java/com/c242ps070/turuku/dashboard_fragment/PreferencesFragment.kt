@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.c242ps070.turuku.activity.ProfileActivity
 import com.c242ps070.turuku.activity.ChangepassActivity
-import com.c242ps070.turuku.activity.DailyActivity
+import com.c242ps070.turuku.activity.Personalize5Activity
 import com.c242ps070.turuku.databinding.FragmentPreferencesBinding
 
 class PreferencesFragment : Fragment() {
@@ -18,7 +18,7 @@ class PreferencesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPreferencesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,7 +32,7 @@ class PreferencesFragment : Fragment() {
         }
 
         binding.btnDailyActivity.setOnClickListener {
-            val intent = Intent(activity, DailyActivity::class.java)
+            val intent = Intent(activity, Personalize5Activity::class.java)
             startActivity(intent)
         }
 
