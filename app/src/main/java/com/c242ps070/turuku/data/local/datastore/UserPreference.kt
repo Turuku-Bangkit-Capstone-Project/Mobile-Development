@@ -24,6 +24,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     private val USER_PHYSICAL_ACTIVITY = intPreferencesKey(PHYSICAL_ACTIVITY)
     private val USER_DAILY_STEPS = intPreferencesKey(DAILY_STEPS)
     private val USER_CHRONOTYPE = stringPreferencesKey(CHRONOTYPE)
+    private val USER_REFRESH_TOKEN = stringPreferencesKey(REFRESH_TOKEN)
 
     fun getUser(): Flow<UserPreferenceModel> {
         return dataStore.data.map { preferences ->
@@ -40,6 +41,17 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 dailySteps = preferences[USER_DAILY_STEPS],
                 chronotype = preferences[USER_CHRONOTYPE]
             )
+        }
+    }
+
+    val refreshToken: Flow<String?>
+        get() = dataStore.data.map { preferences ->
+            preferences[USER_REFRESH_TOKEN]
+        }
+
+    suspend fun saveRefreshToken(refreshToken: String) {
+        dataStore.edit { preferences ->
+            preferences[USER_REFRESH_TOKEN] = refreshToken
         }
     }
 
@@ -119,9 +131,10 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         const val AGE = "age"
         const val GENDER = "gender"
         const val BEDTIME = "bedTime"
-        const val WAKEUPTIME = "wakeupTime"
-        const val PHYSICAL_ACTIVITY = "physicalActivity"
-        const val DAILY_STEPS = "dailySteps"
+        const val WAKEUPTIME = "wakeup_time"
+        const val PHYSICAL_ACTIVITY = "physical_activity"
+        const val DAILY_STEPS = "daily_steps"
         const val CHRONOTYPE = "chronotype"
+        const val REFRESH_TOKEN = "refresh_token"
     }
 }
