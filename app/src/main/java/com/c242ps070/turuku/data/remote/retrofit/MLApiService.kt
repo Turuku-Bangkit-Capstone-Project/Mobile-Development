@@ -8,7 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface MLApiService {
-    @POST("sleep")
+    @POST("sleeprecomendation")
     suspend fun sleep(
         @Body request: SleepRecommendationRequest
     ): SleepRecommendationResponse
