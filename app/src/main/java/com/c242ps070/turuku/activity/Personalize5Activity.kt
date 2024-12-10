@@ -56,11 +56,9 @@ class Personalize5Activity : AppCompatActivity() {
                                 binding.chronotypeResult.text = result.data.chronotype
 
                                 val userData = UpsertUserDataRequest(
-                                    id = user.id,
                                     age = user.age,
                                     gender = user.gender,
-                                    bedTime = user.bedTime,
-                                    wakeupTime = user.wakeupTime
+                                    chronotype = result.data.chronotype
                                 )
                                 insertUserData(userData)
                             }
