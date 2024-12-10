@@ -8,11 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.c242ps070.turuku.HomeActivity
 import com.c242ps070.turuku.data.Result
-import com.c242ps070.turuku.data.remote.request.ChronotypeRequest
 import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
 import com.c242ps070.turuku.databinding.ActivityPersonalize6Binding
-import com.c242ps070.turuku.utils.getSleepDuration
-import com.c242ps070.turuku.utils.getSleepHour
+import com.c242ps070.turuku.utils.getChronotypeName
 import com.c242ps070.turuku.viewmodel.Personalize6ViewModel
 import com.c242ps070.turuku.viewmodel.factory.ViewModelFactory
 
@@ -43,24 +41,19 @@ class Personalize6Activity : AppCompatActivity() {
     private fun getChronotype() {
         viewModel.getUserLoggedIn().observe(this) { user ->
             if (user.bedTime != null && user.wakeupTime != null) {
-                val chronotypeRequest = ChronotypeRequest(
-                    bedtimeHour = getSleepHour(user.bedTime),
-                    wakeupHour = getSleepDuration(user.bedTime, user.wakeupTime)
-                )
-                viewModel.getChronotype(chronotypeRequest).observe(this) { result ->
+                viewModel.getChronotype().observe(this) { result ->
                     if (result != null) {
                         when (result) {
                             is Result.Loading -> showLoading(true)
                             is Result.Success -> {
                                 viewModel.saveChronotype(result.data.chronotype)
-                                binding.chronotypeResult.text = result.data.chronotype
 
                                 val userData = UpsertUserDataRequest(
                                     age = user.age,
-                                    gender = user.gender,
+                                    gender = if (user.gender == "Male") "1" else "0",
                                     chronotype = result.data.chronotype
                                 )
-                                insertUserData(userData)
+                                insertUserData(userData, getChronotypeName(result.data.chronotype))
                             }
                             is Result.Error -> {
                                 showLoading(false)
@@ -73,13 +66,15 @@ class Personalize6Activity : AppCompatActivity() {
         }
     }
 
-    private fun insertUserData(userDataRequest: UpsertUserDataRequest) {
+    private fun insertUserData(userDataRequest: UpsertUserDataRequest, chronotype: String) {
         viewModel.insertUserData(userDataRequest).observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> showLoading(true)
                     is Result.Success -> {
                         showLoading(false)
+                        binding.chronotypeResult.visibility = View.VISIBLE
+                        binding.chronotypeResult.setText(chronotype)
                     }
                     is Result.Error -> {
                         showLoading(false)
