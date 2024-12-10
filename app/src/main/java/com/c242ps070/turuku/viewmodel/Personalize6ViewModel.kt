@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.local.datastore.UserPreference
 import com.c242ps070.turuku.data.local.datastore.UserPreferenceModel
-import com.c242ps070.turuku.data.remote.request.ChronotypeRequest
 import com.c242ps070.turuku.data.remote.response.ChronotypeResponse
 import com.c242ps070.turuku.data.remote.response.SuccessResponse
 import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
@@ -20,8 +19,8 @@ class Personalize6ViewModel(
     private val userRepository: UserRepository,
     private val userPreference: UserPreference
 ): ViewModel() {
-    fun getChronotype(request: ChronotypeRequest): LiveData<Result<ChronotypeResponse>> =
-        machineLearningRepository.getChronotype(request)
+    fun getChronotype(): LiveData<Result<ChronotypeResponse>> =
+        machineLearningRepository.getChronotype()
 
     fun getUserLoggedIn(): LiveData<UserPreferenceModel> = userPreference.getUser().asLiveData()
 
