@@ -6,6 +6,7 @@ import com.c242ps070.turuku.data.remote.request.RegisterRequest
 import com.c242ps070.turuku.data.remote.request.UserDataRequest
 import com.c242ps070.turuku.data.remote.response.HistoryResponse
 import com.c242ps070.turuku.data.remote.response.LoginResponse
+import com.c242ps070.turuku.data.remote.response.RefreshTokenResponse
 import com.c242ps070.turuku.data.remote.response.SuccessResponse
 import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
 import com.c242ps070.turuku.data.remote.response.UserDataResponse
@@ -29,7 +30,7 @@ interface ApiService {
     suspend fun logout()
 
     @GET("token")
-    suspend fun refreshToken(): LoginResponse
+    suspend fun refreshToken(): RefreshTokenResponse
 
     @GET("userdata")
     suspend fun getUserData(
