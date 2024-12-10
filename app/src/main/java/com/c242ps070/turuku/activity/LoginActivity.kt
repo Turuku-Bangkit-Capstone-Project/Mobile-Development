@@ -1,11 +1,16 @@
 package com.c242ps070.turuku.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
+import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.c242ps070.turuku.HomeActivity
+import com.c242ps070.turuku.R
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.local.datastore.UserPreferenceModel
 import com.c242ps070.turuku.data.remote.request.LoginRequest
@@ -21,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        togglePassword()
 
         //Initiate viewmodel
         initViewModel()
@@ -58,9 +64,7 @@ class LoginActivity : AppCompatActivity() {
             viewModel.login(loginRequest).observe(this) { result ->
                 if (result != null) {
                     when (result) {
-                        is Result.Loading -> {
-                            //Loading
-                        }
+                        is Result.Loading -> showLoading(true)
                         is Result.Success -> {
                             val userPreferenceModel = UserPreferenceModel(
                                 id = result.data.userId,
@@ -69,13 +73,14 @@ class LoginActivity : AppCompatActivity() {
                                 token = result.data.accessToken
                             )
                             viewModel.saveUserLoggedIn(userPreferenceModel)
-
                             ViewModelFactory.clearInstance()
-                            initViewModel()
-                            refreshToken()
+                            val intent = Intent(this, Personalize1Activity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
                         }
                         is Result.Error -> {
                             Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                            showLoading(false)
                         }
                     }
                 }
@@ -85,27 +90,23 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun refreshToken() {
-        viewModel.refreshToken().observe(this) { result ->
-            if (result != null) {
-                when (result) {
-                    is Result.Loading -> showLoading(true)
-                    is Result.Success -> {
-                        val userPreferenceModel = UserPreferenceModel(
-                            token = result.data.accessToken
-                        )
-                        viewModel.saveUserLoggedIn(userPreferenceModel)
-                        ViewModelFactory.clearInstance()
-                        showLoading(false)
-
-                        val intent = Intent(this, Personalize1Activity::class.java)
-                        startActivity(intent)
-                    }
-                    is Result.Error -> {
-                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
-                        showLoading(false)
+    @SuppressLint("ClickableViewAccessibility")
+    private fun togglePassword() {
+        with(binding.inputLoginPassword) {
+            setOnTouchListener { _, event ->
+                if (event.action == MotionEvent.ACTION_UP) {
+                    if (event.rawX >= (right - compoundDrawables[2].bounds.width())) {
+                        if (transformationMethod == PasswordTransformationMethod.getInstance()) {
+                            transformationMethod = HideReturnsTransformationMethod.getInstance()
+                            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_visibility, 0)
+                        } else {
+                            transformationMethod = PasswordTransformationMethod.getInstance()
+                            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_visibility_off, 0)
+                        }
+                        return@setOnTouchListener true
                     }
                 }
+                return@setOnTouchListener false
             }
         }
     }
@@ -114,7 +115,7 @@ class LoginActivity : AppCompatActivity() {
         binding.inputLoginEmail.isEnabled = !isLoading
         binding.inputLoginPassword.isEnabled = !isLoading
         binding.getStartedButton.isEnabled = !isLoading
-        binding.getStartedButton.text = if (isLoading) "Signing in..." else "Get Started"
+        binding.getStartedButton.setText(if (isLoading) "Signing in..." else "Get Started")
         binding.signUp.isEnabled = !isLoading
     }
 }
