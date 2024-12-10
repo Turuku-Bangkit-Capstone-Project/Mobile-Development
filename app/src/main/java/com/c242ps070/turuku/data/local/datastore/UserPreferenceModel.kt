@@ -11,5 +11,6 @@ data class UserPreferenceModel(
     val wakeupTime: String? = null,
     val physicalActivity: Int? = null,
     val dailySteps: Int? = null,
-    val chronotype: String? = null
+    val chronotype: String? = null,
+    val refreshToken: String? = null
 )
