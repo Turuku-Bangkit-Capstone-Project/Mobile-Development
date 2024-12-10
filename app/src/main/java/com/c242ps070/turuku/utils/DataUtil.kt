@@ -20,3 +20,13 @@ fun getSleepDuration(bedTime: String, wakeupTime: String): Int {
 
     return (duration / (60 * 60 * 1000)).toInt()
 }
+
+fun getChronotypeName(chronotype: String): String {
+    return when (chronotype) {
+        "0" -> "Bear"
+        "1" -> "Dolphin"
+        "2" -> "Lion"
+        "3" -> "Wolf"
+        else -> "Unknown"
+    }
+}
