@@ -8,5 +8,8 @@ data class UserPreferenceModel(
     val age: Int? = null,
     val gender: String? = null,
     val bedTime: String? = null,
-    val wakeupTime: String? = null
+    val wakeupTime: String? = null,
+    val physicalActivity: Int? = null,
+    val dailySteps: Int? = null,
+    val chronotype: String? = null
 )
