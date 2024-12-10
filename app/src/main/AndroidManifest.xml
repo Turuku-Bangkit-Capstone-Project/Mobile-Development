@@ -37,7 +37,7 @@
             android:name=".activity.SetAlarmActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.Personalize5Activity"
+            android:name=".activity.Personalize6Activity"
             android:exported="false" />
         <activity
             android:name=".activity.Personalize4Activity"

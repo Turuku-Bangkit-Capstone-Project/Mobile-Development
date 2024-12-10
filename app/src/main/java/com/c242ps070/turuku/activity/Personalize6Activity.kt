@@ -10,25 +10,25 @@ import com.c242ps070.turuku.HomeActivity
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.remote.request.ChronotypeRequest
 import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
-import com.c242ps070.turuku.databinding.ActivityPersonalize5Binding
+import com.c242ps070.turuku.databinding.ActivityPersonalize6Binding
 import com.c242ps070.turuku.utils.getSleepDuration
 import com.c242ps070.turuku.utils.getSleepHour
 import com.c242ps070.turuku.viewmodel.Personalize5ViewModel
 import com.c242ps070.turuku.viewmodel.factory.ViewModelFactory
 
-class Personalize5Activity : AppCompatActivity() {
-    private lateinit var binding : ActivityPersonalize5Binding
+class Personalize6Activity : AppCompatActivity() {
+    private lateinit var binding : ActivityPersonalize6Binding
     private lateinit var viewModel: Personalize5ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPersonalize5Binding.inflate(layoutInflater)
+        binding = ActivityPersonalize6Binding.inflate(layoutInflater)
         setContentView(binding.root)
         initViewModel()
         getChronotype()
 
         binding.btnContinueToHome.setOnClickListener {
-            val intent = Intent(this@Personalize5Activity, HomeActivity::class.java)
+            val intent = Intent(this@Personalize6Activity, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             ViewModelFactory.clearInstance()
