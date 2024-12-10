@@ -21,6 +21,8 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     private val USER_GENDER = stringPreferencesKey(GENDER)
     private val USER_BEDTIME = stringPreferencesKey(BEDTIME)
     private val USER_WAKEUPTIME = stringPreferencesKey(WAKEUPTIME)
+    private val USER_PHYSICAL_ACTIVITY = intPreferencesKey(PHYSICAL_ACTIVITY)
+    private val USER_DAILY_STEPS = intPreferencesKey(DAILY_STEPS)
     private val USER_CHRONOTYPE = stringPreferencesKey(CHRONOTYPE)
 
     fun getUser(): Flow<UserPreferenceModel> {
@@ -33,7 +35,10 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 age = preferences[USER_AGE],
                 gender = preferences[USER_GENDER],
                 bedTime = preferences[USER_BEDTIME],
-                wakeupTime = preferences[USER_WAKEUPTIME]
+                wakeupTime = preferences[USER_WAKEUPTIME],
+                physicalActivity = preferences[USER_PHYSICAL_ACTIVITY],
+                dailySteps = preferences[USER_DAILY_STEPS],
+                chronotype = preferences[USER_CHRONOTYPE]
             )
         }
     }
@@ -73,6 +78,16 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    suspend fun savePhysicalActivityAndDailySteps(
+        physicalActivity: Int,
+        dailySteps: Int
+    ) {
+        dataStore.edit { preferences ->
+            preferences[USER_PHYSICAL_ACTIVITY] = physicalActivity
+            preferences[USER_DAILY_STEPS] = dailySteps
+        }
+    }
+
     suspend fun saveChronotype(chronotype: String) {
         dataStore.edit { preferences ->
             preferences[USER_CHRONOTYPE] = chronotype
@@ -105,6 +120,8 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         const val GENDER = "gender"
         const val BEDTIME = "bedTime"
         const val WAKEUPTIME = "wakeupTime"
+        const val PHYSICAL_ACTIVITY = "physicalActivity"
+        const val DAILY_STEPS = "dailySteps"
         const val CHRONOTYPE = "chronotype"
     }
 }
