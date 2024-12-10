@@ -15,7 +15,7 @@ import com.c242ps070.turuku.data.repository.MachineLearningRepository
 import com.c242ps070.turuku.data.repository.UserRepository
 import kotlinx.coroutines.launch
 
-class Personalize5ViewModel(
+class Personalize6ViewModel(
     private val machineLearningRepository: MachineLearningRepository,
     private val userRepository: UserRepository,
     private val userPreference: UserPreference

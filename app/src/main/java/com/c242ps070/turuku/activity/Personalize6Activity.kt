@@ -13,12 +13,12 @@ import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
 import com.c242ps070.turuku.databinding.ActivityPersonalize6Binding
 import com.c242ps070.turuku.utils.getSleepDuration
 import com.c242ps070.turuku.utils.getSleepHour
-import com.c242ps070.turuku.viewmodel.Personalize5ViewModel
+import com.c242ps070.turuku.viewmodel.Personalize6ViewModel
 import com.c242ps070.turuku.viewmodel.factory.ViewModelFactory
 
 class Personalize6Activity : AppCompatActivity() {
     private lateinit var binding : ActivityPersonalize6Binding
-    private lateinit var viewModel: Personalize5ViewModel
+    private lateinit var viewModel: Personalize6ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class Personalize6Activity : AppCompatActivity() {
 
     private fun initViewModel() {
         val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[Personalize5ViewModel::class.java]
+        viewModel = ViewModelProvider(this, factory)[Personalize6ViewModel::class.java]
     }
 
     private fun getChronotype() {
