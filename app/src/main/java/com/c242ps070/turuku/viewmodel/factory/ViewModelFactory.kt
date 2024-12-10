@@ -14,6 +14,7 @@ import com.c242ps070.turuku.viewmodel.LoginViewModel
 import com.c242ps070.turuku.viewmodel.Personalize2ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize3ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize4ViewModel
+import com.c242ps070.turuku.viewmodel.Personalize5ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize6ViewModel
 import com.c242ps070.turuku.viewmodel.SignUpViewModel
 import com.c242ps070.turuku.viewmodel.SplashScreenViewModel
@@ -42,6 +43,12 @@ class ViewModelFactory(
             return userPreference?.let { Personalize3ViewModel(it) } as T
         } else if (modelClass.isAssignableFrom(Personalize4ViewModel::class.java)) {
             return userPreference?.let { Personalize4ViewModel(it) } as T
+        } else if (modelClass.isAssignableFrom(Personalize5ViewModel::class.java)) {
+            return userRepository?.let { userRepository ->
+                userPreference?.let { userPreference ->
+                    Personalize5ViewModel(userRepository, userPreference)
+                }
+            } as T
         } else if (modelClass.isAssignableFrom(Personalize6ViewModel::class.java)) {
             return machineLearningRepository?.let { machineLearningRepository ->
                 userRepository?.let { userRepository ->
