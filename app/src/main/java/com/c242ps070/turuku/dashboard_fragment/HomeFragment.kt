@@ -33,7 +33,17 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
             checkUserData()
-            getSleepRecommendation()
+
+            viewModel?.getLastHistoryRoom()?.observe(viewLifecycleOwner) { lastHistory ->
+                if (lastHistory?.sleepRecommendation != null) {
+                    showLoading(false)
+                    binding?.optimalBedtime?.setText(
+                        convertTimeFormat(lastHistory.sleepRecommendation)
+                    )
+                } else {
+                    getSleepRecommendation(lastHistory?.id!!)
+                }
+            }
 
             binding?.sleepButton?.setOnClickListener {
                 startActivity(Intent(context, SetAlarmActivity::class.java))
@@ -41,13 +51,16 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getSleepRecommendation() {
+    private fun getSleepRecommendation(historyId: Int) {
         viewModel?.getSleepRecommendation()?.observe(requireActivity()) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> showLoading(true)
                     is Result.Success -> {
                         showLoading(false)
+                        viewModel?.updateSleepRecommendationRoom(
+                            historyId, result.data.recommendSleepDuration
+                        )
                         binding?.optimalBedtime?.setText(
                             convertTimeFormat(result.data.recommendSleepDuration)
                         )
