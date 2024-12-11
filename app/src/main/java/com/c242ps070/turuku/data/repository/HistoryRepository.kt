@@ -91,4 +91,15 @@ class HistoryRepository(
             Log.d("HistoryRepository", "deleteAllSleepHistory: ${e.message.toString()}")
         }
     }
+
+    suspend fun updateSleepRecommendationRoom(
+        id: Int,
+        sleepRecommendation: String
+    ) {
+        try {
+            database.sleepHistoryDao().updateSleepRecommendation(id, sleepRecommendation)
+        } catch (e: Exception) {
+            Log.d("HistoryRepository", "updateSleepRecommendationRoom: ${e.message.toString()}")
+        }
+    }
 }
