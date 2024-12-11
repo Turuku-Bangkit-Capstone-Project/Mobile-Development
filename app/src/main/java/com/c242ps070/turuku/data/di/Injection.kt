@@ -3,8 +3,10 @@ package com.c242ps070.turuku.data.di
 import android.content.Context
 import com.c242ps070.turuku.data.local.datastore.UserPreference
 import com.c242ps070.turuku.data.local.datastore.dataStore
+import com.c242ps070.turuku.data.local.room.TurukuDatabase
 import com.c242ps070.turuku.data.remote.retrofit.ApiClient
 import com.c242ps070.turuku.data.repository.AuthRepository
+import com.c242ps070.turuku.data.repository.HistoryRepository
 import com.c242ps070.turuku.data.repository.MachineLearningRepository
 import com.c242ps070.turuku.data.repository.UserRepository
 
@@ -25,5 +27,12 @@ object Injection {
         val userPreference = UserPreference.getInstance(context.dataStore)
         val apiService = ApiClient.create(userPreference)
         return MachineLearningRepository(apiService)
+    }
+
+    fun provideHistoryRepository(context: Context): HistoryRepository {
+        val userPreference = UserPreference.getInstance(context.dataStore)
+        val apiService = ApiClient.create(userPreference)
+        val database = TurukuDatabase.getDatabase(context)
+        return HistoryRepository(apiService, database)
     }
 }
