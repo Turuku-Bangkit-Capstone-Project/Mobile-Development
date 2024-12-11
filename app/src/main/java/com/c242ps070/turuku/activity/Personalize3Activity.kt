@@ -33,6 +33,7 @@ class Personalize3Activity : AppCompatActivity() {
 
         viewModel.bedTime.observe(this) {
             binding.tvTime.text = it
+            binding.btnPickTime.setText("Change bed time")
         }
 
         binding.btnContinue.setOnClickListener{
