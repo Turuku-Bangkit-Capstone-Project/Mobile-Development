@@ -16,8 +16,14 @@ data class SleepHistoryEntity(
     @ColumnInfo("end_time")
     val endTime: String,
 
-    @ColumnInfo("sleep_duration")
-    val sleepDuration: Int, // in milliseconds
+    @ColumnInfo("sleep_recommendation")
+    val sleepRecommendation: String,
+
+    @ColumnInfo("physical_activity_level")
+    val physicalActivityLevel: Int,
+
+    @ColumnInfo("daily_steps")
+    val dailySteps: String,
 
     @ColumnInfo("created_at")
     val createdAt: String
