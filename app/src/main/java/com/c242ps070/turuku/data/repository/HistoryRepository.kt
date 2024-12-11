@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.local.room.TurukuDatabase
+import com.c242ps070.turuku.data.local.room.entity.SleepHistoryEntity
 import com.c242ps070.turuku.data.remote.request.HistoryRequest
 import com.c242ps070.turuku.data.remote.response.ErrorResponse
 import com.c242ps070.turuku.data.remote.response.HistoryResponse
@@ -46,6 +47,48 @@ class HistoryRepository(
         } catch (e: Exception) {
             Log.d("UserRepository", "getHistory: ${e.message.toString()}")
             emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun getAllHistoryRoom(): LiveData<List<SleepHistoryEntity>> = liveData {
+        try {
+            val historyList = database.sleepHistoryDao().getAllSleepHistory()
+            emit(historyList)
+        } catch (e: Exception) {
+            Log.d("HistoryRepository", "getAllHistoryFromRoom: ${e.message.toString()}")
+        }
+    }
+
+    fun getLastSleepHistoryRoom(): LiveData<SleepHistoryEntity?> = liveData {
+        try {
+            val lastSleepHistory = database.sleepHistoryDao().getLastSleepHistory()
+            emit(lastSleepHistory)
+        } catch (e: Exception) {
+            Log.d("HistoryRepository", "getLastSleepHistory: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun insertAllSleepHistoryRoom(sleepHistory: List<SleepHistoryEntity>) {
+        try {
+            database.sleepHistoryDao().insertAllSleepHistory(sleepHistory)
+        } catch (e: Exception) {
+            Log.d("HistoryRepository", "insertSleepHistory: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun insertSleepHistoryRoom(sleepHistory: SleepHistoryEntity) {
+        try {
+            database.sleepHistoryDao().insertSleepHistory(sleepHistory)
+        } catch (e: Exception) {
+            Log.d("HistoryRepository", "insertSleepHistory: ${e.message.toString()}")
+        }
+    }
+
+    suspend fun deleteAllSleepHistoryRoom() {
+        try {
+            database.sleepHistoryDao().deleteAllSleepHistory()
+        } catch (e: Exception) {
+            Log.d("HistoryRepository", "deleteAllSleepHistory: ${e.message.toString()}")
         }
     }
 }
