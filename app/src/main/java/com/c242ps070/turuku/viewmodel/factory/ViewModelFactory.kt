@@ -29,8 +29,10 @@ class ViewModelFactory(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return authRepository?.let { authRepository ->
-                userPreference?.let { userPreference ->
-                    LoginViewModel(authRepository, userPreference)
+                userRepository?.let { userRepository ->
+                    userPreference?.let { userPreference ->
+                        LoginViewModel(authRepository, userRepository, userPreference)
+                    }
                 }
             } as T
         } else if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
