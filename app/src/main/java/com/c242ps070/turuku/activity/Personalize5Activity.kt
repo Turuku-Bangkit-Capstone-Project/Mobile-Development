@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.local.datastore.UserPreferenceModel
+import com.c242ps070.turuku.data.local.room.entity.SleepHistoryEntity
 import com.c242ps070.turuku.data.remote.request.HistoryRequest
 import com.c242ps070.turuku.databinding.ActivityPersonalize5Binding
 import com.c242ps070.turuku.viewmodel.Personalize5ViewModel
@@ -39,6 +40,8 @@ class Personalize5Activity : AppCompatActivity() {
     }
 
     private fun addHistory(user: UserPreferenceModel) {
+        val physicalActivity = binding.inputPhysicalActivity.text.toString().toInt()
+        val dailySteps = binding.inputDailySteps.text.toString().toInt()
         val request = HistoryRequest(
             user.bedTime!!,
             user.wakeupTime!!,
@@ -50,6 +53,15 @@ class Personalize5Activity : AppCompatActivity() {
                 when (result) {
                     is Result.Loading -> showLoading(true)
                     is Result.Success -> {
+                        viewModel.insertSleepHistory(
+                            SleepHistoryEntity(
+                                startTime = user.bedTime,
+                                endTime = user.wakeupTime,
+                                physicalActivityLevel = physicalActivity,
+                                dailySteps = dailySteps,
+                                sleepRecommendation = null
+                            )
+                        )
                         showLoading(false)
                         startActivity(Intent(this, Personalize6Activity::class.java))
                     }
