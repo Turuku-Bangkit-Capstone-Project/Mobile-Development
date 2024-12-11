@@ -18,7 +18,7 @@ data class SleepHistoryEntity(
     val endTime: String,
 
     @ColumnInfo("sleep_recommendation")
-    val sleepRecommendation: String,
+    val sleepRecommendation: String?,
 
     @ColumnInfo("physical_activity_level")
     val physicalActivityLevel: Int,
