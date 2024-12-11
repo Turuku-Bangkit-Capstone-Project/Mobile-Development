@@ -22,4 +22,7 @@ interface SleepHistoryDao {
 
     @Query("DELETE FROM sleep_history")
     suspend fun deleteAllSleepHistory()
+
+    @Query("UPDATE sleep_history SET sleep_recommendation = :sleepRecommendation WHERE id = :id")
+    suspend fun updateSleepRecommendation(id: Int, sleepRecommendation: String)
 }
