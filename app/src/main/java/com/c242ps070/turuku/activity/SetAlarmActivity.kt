@@ -24,6 +24,13 @@ class SetAlarmActivity : AppCompatActivity() {
         setContentView(binding.root)
         initViewModel()
 
+        viewModel.getUserLoggedIn().observe(this) {
+            if (it.wakeupTime != null) {
+                viewModel.setWakeupTime(it.wakeupTime)
+                binding.tvTime.visibility = View.VISIBLE
+            }
+        }
+
         binding.btnPickTime.setOnClickListener {
             openTimePickerDialog()
         }
@@ -40,8 +47,13 @@ class SetAlarmActivity : AppCompatActivity() {
     }
 
     private fun openTimePickerDialog() {
-        val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-        val currentMinute = Calendar.getInstance().get(Calendar.MINUTE)
+        var currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        var currentMinute = Calendar.getInstance().get(Calendar.MINUTE)
+
+        viewModel.wakeupTime.observe(this) {
+            currentHour = it.split(":")[0].toInt()
+            currentMinute = it.split(":")[1].toInt()
+        }
 
         val picker =
             MaterialTimePicker.Builder()
