@@ -74,9 +74,8 @@ class LoginActivity : AppCompatActivity() {
                             )
                             viewModel.saveUserLoggedIn(userPreferenceModel)
                             ViewModelFactory.clearInstance()
-                            val intent = Intent(this, Personalize1Activity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
+                            initViewModel()
+                            checkHistory()
                         }
                         is Result.Error -> {
                             Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
@@ -87,6 +86,31 @@ class LoginActivity : AppCompatActivity() {
             }
         } else {
             Toast.makeText(this, "Email and password must not be empty", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun checkHistory() {
+        viewModel.getHistory().observe(this) { result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> showLoading(true)
+                    is Result.Success -> {
+                        if (result.data.isEmpty()) {
+                            val intent = Intent(this, Personalize1Activity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                        } else {
+                            val intent = Intent(this, HomeActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                        }
+                    }
+                    is Result.Error -> {
+                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                        showLoading(false)
+                    }
+                }
+            }
         }
     }
 
