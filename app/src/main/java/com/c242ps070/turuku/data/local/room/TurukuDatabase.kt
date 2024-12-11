@@ -4,14 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.c242ps070.turuku.data.local.room.dao.SleepHistoryDao
 import com.c242ps070.turuku.data.local.room.entity.SleepHistoryEntity
+import com.c242ps070.turuku.utils.DatetimeConverters
 
 @Database(
     entities = [SleepHistoryEntity::class],
     version = 1,
     exportSchema = false
 )
+@TypeConverters(DatetimeConverters::class)
 abstract class TurukuDatabase: RoomDatabase() {
     abstract fun sleepHistoryDao(): SleepHistoryDao
 
