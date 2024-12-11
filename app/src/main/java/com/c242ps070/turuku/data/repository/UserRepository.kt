@@ -50,38 +50,6 @@ class UserRepository(
         }
     }
 
-    fun getHistory(): LiveData<Result<List<HistoryResponse>>> = liveData {
-        emit(Result.Loading)
-        try {
-            val response = apiService.getHistory()
-            emit(Result.Success(response))
-        } catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-            val errorMessage = errorBody.message ?: ""
-            emit(Result.Error(errorMessage))
-        } catch (e: Exception) {
-            Log.d("UserRepository", "getHistory: ${e.message.toString()}")
-            emit(Result.Error(e.message.toString()))
-        }
-    }
-
-    fun addHistory(request: HistoryRequest): LiveData<Result<SuccessResponse>> = liveData {
-        emit(Result.Loading)
-        try {
-            val response = apiService.addHistory(request)
-            emit(Result.Success(response))
-        } catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-            val errorMessage = errorBody.message ?: ""
-            emit(Result.Error(errorMessage))
-        } catch (e: Exception) {
-            Log.d("UserRepository", "getHistory: ${e.message.toString()}")
-            emit(Result.Error(e.message.toString()))
-        }
-    }
-
     fun changePassword(request: ChangePasswordRequest): LiveData<Result<SuccessResponse>> = liveData {
         emit(Result.Loading)
         try {
