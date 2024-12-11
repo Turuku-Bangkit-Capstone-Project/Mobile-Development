@@ -7,14 +7,11 @@ data class UserDataResponse(
     val id: Int? = null,
 
     @SerializedName("age")
-    val age: String? = null,
+    val age: Int? = null,
 
     @SerializedName("gender")
-    val gender: String? = null,
+    val gender: Int? = null,
 
-    @SerializedName("bedTime")
-    val bedTime: String? = null,
-
-    @SerializedName("wakeupTime")
-    val wakeupTime: String? = null
+    @SerializedName("chronotype")
+    val chronotype: String? = null
 )
