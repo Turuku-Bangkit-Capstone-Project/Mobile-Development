@@ -10,6 +10,7 @@ import com.c242ps070.turuku.data.remote.response.RefreshTokenResponse
 import com.c242ps070.turuku.data.remote.response.SleepRecommendationResponse
 import com.c242ps070.turuku.data.remote.response.SuccessResponse
 import com.c242ps070.turuku.data.remote.request.UpsertUserDataRequest
+import com.c242ps070.turuku.data.remote.response.ChangePasswordResponse
 import com.c242ps070.turuku.data.remote.response.UserDataResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -54,4 +55,7 @@ interface ApiService {
 
     @POST("sleeprecomendation")
     suspend fun sleepRecommendation(): SleepRecommendationResponse
+
+    @POST("changepassword")
+    suspend fun changePassword() : ChangePasswordResponse
 }
