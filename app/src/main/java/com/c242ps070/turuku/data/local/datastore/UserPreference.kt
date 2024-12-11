@@ -19,6 +19,10 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     private val USER_TOKEN = stringPreferencesKey(TOKEN)
     private val USER_AGE = intPreferencesKey(AGE)
     private val USER_GENDER = stringPreferencesKey(GENDER)
+    private val USER_BEDTIME = stringPreferencesKey(BEDTIME)
+    private val USER_WAKEUPTIME = stringPreferencesKey(WAKEUPTIME)
+    private val USER_PHYSICAL_ACTIVITY = intPreferencesKey(PHYSICAL_ACTIVITY)
+    private val USER_DAILY_STEPS = intPreferencesKey(DAILY_STEPS)
     private val USER_CHRONOTYPE = stringPreferencesKey(CHRONOTYPE)
     private val USER_REFRESH_TOKEN = stringPreferencesKey(REFRESH_TOKEN)
 
@@ -31,6 +35,10 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 token = preferences[USER_TOKEN] ?: "",
                 age = preferences[USER_AGE],
                 gender = preferences[USER_GENDER],
+                bedTime = preferences[USER_BEDTIME],
+                wakeupTime = preferences[USER_WAKEUPTIME],
+                physicalActivity = preferences[USER_PHYSICAL_ACTIVITY],
+                dailySteps = preferences[USER_DAILY_STEPS],
                 chronotype = preferences[USER_CHRONOTYPE]
             )
         }
@@ -66,6 +74,32 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    suspend fun saveBedTime(
+        bedTime: String
+    ) {
+        dataStore.edit { preferences ->
+            preferences[USER_BEDTIME] = bedTime
+        }
+    }
+
+    suspend fun saveWakeupTime(
+        wakeupTime: String
+    ) {
+        dataStore.edit { preferences ->
+            preferences[USER_WAKEUPTIME] = wakeupTime
+        }
+    }
+
+    suspend fun savePhysicalActivityAndDailySteps(
+        physicalActivity: Int,
+        dailySteps: Int
+    ) {
+        dataStore.edit { preferences ->
+            preferences[USER_PHYSICAL_ACTIVITY] = physicalActivity
+            preferences[USER_DAILY_STEPS] = dailySteps
+        }
+    }
+
     suspend fun saveChronotype(chronotype: String) {
         dataStore.edit { preferences ->
             preferences[USER_CHRONOTYPE] = chronotype
@@ -96,6 +130,10 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         const val TOKEN = "token"
         const val AGE = "age"
         const val GENDER = "gender"
+        const val BEDTIME = "bedTime"
+        const val WAKEUPTIME = "wakeup_time"
+        const val PHYSICAL_ACTIVITY = "physical_activity"
+        const val DAILY_STEPS = "daily_steps"
         const val CHRONOTYPE = "chronotype"
         const val REFRESH_TOKEN = "refresh_token"
     }
