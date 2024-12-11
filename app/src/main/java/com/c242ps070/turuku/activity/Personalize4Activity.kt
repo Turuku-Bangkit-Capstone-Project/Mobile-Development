@@ -33,6 +33,7 @@ class Personalize4Activity : AppCompatActivity() {
 
         viewModel.wakeupTime.observe(this) {
             binding.tvTime.text = it
+            binding.btnPickTime.setText("Change wakeup time")
         }
 
         binding.btnContinue.setOnClickListener {
