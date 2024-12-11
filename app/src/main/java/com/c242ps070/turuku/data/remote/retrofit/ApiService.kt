@@ -3,14 +3,13 @@ package com.c242ps070.turuku.data.remote.retrofit
 import com.c242ps070.turuku.data.remote.request.HistoryRequest
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.data.remote.request.RegisterRequest
-import com.c242ps070.turuku.data.remote.request.UserDataRequest
 import com.c242ps070.turuku.data.remote.response.ChronotypeResponse
 import com.c242ps070.turuku.data.remote.response.HistoryResponse
 import com.c242ps070.turuku.data.remote.response.LoginResponse
 import com.c242ps070.turuku.data.remote.response.RefreshTokenResponse
 import com.c242ps070.turuku.data.remote.response.SleepRecommendationResponse
 import com.c242ps070.turuku.data.remote.response.SuccessResponse
-import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
+import com.c242ps070.turuku.data.remote.request.UpsertUserDataRequest
 import com.c242ps070.turuku.data.remote.response.UserDataResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -35,9 +34,7 @@ interface ApiService {
     suspend fun refreshToken(): RefreshTokenResponse
 
     @GET("userdata")
-    suspend fun getUserData(
-        @Body request: UserDataRequest
-    ): UserDataResponse
+    suspend fun getUserData(): UserDataResponse
 
     @POST("userdata")
     suspend fun upsertUserData(

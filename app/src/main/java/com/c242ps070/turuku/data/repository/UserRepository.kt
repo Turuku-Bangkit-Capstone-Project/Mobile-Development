@@ -5,11 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.remote.request.HistoryRequest
-import com.c242ps070.turuku.data.remote.request.UserDataRequest
 import com.c242ps070.turuku.data.remote.response.ErrorResponse
 import com.c242ps070.turuku.data.remote.response.HistoryResponse
 import com.c242ps070.turuku.data.remote.response.SuccessResponse
-import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
+import com.c242ps070.turuku.data.remote.request.UpsertUserDataRequest
 import com.c242ps070.turuku.data.remote.response.UserDataResponse
 import com.c242ps070.turuku.data.remote.retrofit.ApiService
 import com.google.gson.Gson
@@ -18,10 +17,10 @@ import retrofit2.HttpException
 class UserRepository(
     private val apiService: ApiService
 ) {
-    fun getUserData(request: UserDataRequest): LiveData<Result<UserDataResponse>> = liveData {
+    fun getUserData(): LiveData<Result<UserDataResponse>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getUserData(request)
+            val response = apiService.getUserData()
             emit(Result.Success(response))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
