@@ -31,4 +31,17 @@ class LoginViewModel(
     fun getUserLoggedIn(): LiveData<UserPreferenceModel> = userPreference.getUser().asLiveData()
 
     fun getHistory(): LiveData<Result<List<HistoryResponse>>> = userRepository.getHistory()
+
+    fun savePersonalize(
+        bedTime: String,
+        wakeupTime: String,
+        physicalActivity: Int,
+        dailySteps: Int
+    ) {
+        viewModelScope.launch {
+            userPreference.saveBedTime(bedTime)
+            userPreference.saveWakeupTime(wakeupTime)
+            userPreference.savePhysicalActivityAndDailySteps(physicalActivity, dailySteps)
+        }
+    }
 }
