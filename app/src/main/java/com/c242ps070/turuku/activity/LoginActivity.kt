@@ -13,6 +13,7 @@ import com.c242ps070.turuku.HomeActivity
 import com.c242ps070.turuku.R
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.local.datastore.UserPreferenceModel
+import com.c242ps070.turuku.data.local.room.entity.SleepHistoryEntity
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.databinding.ActivityLoginBinding
 import com.c242ps070.turuku.viewmodel.LoginViewModel
@@ -100,13 +101,17 @@ class LoginActivity : AppCompatActivity() {
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
                         } else {
-                            val latestHistory = result.data[0]
-                            viewModel.savePersonalize(
-                                bedTime = latestHistory.bedTime,
-                                wakeupTime = latestHistory.wakeupTime,
-                                physicalActivity = latestHistory.physicalActivityLevel,
-                                dailySteps = latestHistory.dailySteps
-                            )
+                            val histories = result.data.map {
+                                SleepHistoryEntity(
+                                    id = it.id,
+                                    startTime = it.bedTime,
+                                    endTime = it.wakeupTime,
+                                    sleepRecommendation = it.sleepRecommendation,
+                                    physicalActivityLevel = it.physicalActivityLevel,
+                                    dailySteps = it.dailySteps
+                                )
+                            }
+                            viewModel.insertHistories(histories)
 
                             ViewModelFactory.clearInstance()
                             val intent = Intent(this, HomeActivity::class.java)
@@ -115,7 +120,13 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                     is Result.Error -> {
-                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                        if (result.error == "Data history tidak ditemukan") {
+                            val intent = Intent(this, Personalize1Activity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                        }
                         showLoading(false)
                     }
                 }
