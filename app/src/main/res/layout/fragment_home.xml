@@ -221,14 +221,16 @@
                 android:id="@+id/ringPrediction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Alarm will ring at 07:30"
+                tools:text="Your Alarm will ring at 07:30"
                 android:textColor="@color/white"
                 android:fontFamily="@font/sora_bold"
                 android:layout_marginTop="20dp"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bedtimeWaketimeContainer" />
+                app:layout_constraintTop_toBottomOf="@id/bedtimeWaketimeContainer"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
             <!--            <Button-->
             <!--                android:layout_width="wrap_content"-->
