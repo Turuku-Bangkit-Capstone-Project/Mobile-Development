@@ -3,8 +3,10 @@ package com.c242ps070.turuku.utils
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-fun getSleepHour(bedTime: String): Int {
-    return bedTime.split(":")[0].toInt()
+fun getTimeHourAndMinute(time: String): List<Int> {
+    val hour = time.split(":")[0].toInt()
+    val minute = time.split(":")[1].toInt()
+    return listOf(hour, minute)
 }
 
 fun getSleepDuration(bedTime: String, wakeupTime: String): Int {
