@@ -18,7 +18,7 @@ import retrofit2.HttpException
 class UserRepository(
     private val apiService: ApiService
 ) {
-    fun getUserData(): LiveData<Result<UserDataResponse>> = liveData {
+    fun getUserData(): LiveData<Result<List<UserDataResponse>>> = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.getUserData()
