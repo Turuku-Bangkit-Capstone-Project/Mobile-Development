@@ -7,6 +7,7 @@ import com.c242ps070.turuku.data.di.Injection
 import com.c242ps070.turuku.data.local.datastore.UserPreference
 import com.c242ps070.turuku.data.local.datastore.dataStore
 import com.c242ps070.turuku.data.repository.AuthRepository
+import com.c242ps070.turuku.data.repository.HistoryRepository
 import com.c242ps070.turuku.data.repository.MachineLearningRepository
 import com.c242ps070.turuku.data.repository.UserRepository
 import com.c242ps070.turuku.viewmodel.ChangepassViewModel
@@ -24,6 +25,7 @@ class ViewModelFactory(
     private val authRepository: AuthRepository? = null,
     private val userRepository: UserRepository? = null,
     private val machineLearningRepository: MachineLearningRepository? = null,
+    private val historyRepository: HistoryRepository? = null,
     private val userPreference: UserPreference? = null
 ): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -31,8 +33,10 @@ class ViewModelFactory(
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return authRepository?.let { authRepository ->
                 userRepository?.let { userRepository ->
-                    userPreference?.let { userPreference ->
-                        LoginViewModel(authRepository, userRepository, userPreference)
+                    historyRepository?.let { historyRepository ->
+                        userPreference?.let { userPreference ->
+                            LoginViewModel(authRepository, userRepository, historyRepository, userPreference)
+                        }
                     }
                 }
             } as T
@@ -47,9 +51,9 @@ class ViewModelFactory(
         } else if (modelClass.isAssignableFrom(Personalize4ViewModel::class.java)) {
             return userPreference?.let { Personalize4ViewModel(it) } as T
         } else if (modelClass.isAssignableFrom(Personalize5ViewModel::class.java)) {
-            return userRepository?.let { userRepository ->
+            return historyRepository?.let { historyRepository ->
                 userPreference?.let { userPreference ->
-                    Personalize5ViewModel(userRepository, userPreference)
+                    Personalize5ViewModel(historyRepository, userPreference)
                 }
             } as T
         } else if (modelClass.isAssignableFrom(Personalize6ViewModel::class.java)) {
@@ -88,6 +92,7 @@ class ViewModelFactory(
                         Injection.provideAuthRepository(context),
                         Injection.provideUserRepository(context),
                         Injection.provideMLRepository(context),
+                        Injection.provideHistoryRepository(context),
                         UserPreference.getInstance(context.dataStore)
                     )
                 }
