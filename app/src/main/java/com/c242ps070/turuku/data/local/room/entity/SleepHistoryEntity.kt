@@ -3,6 +3,7 @@ package com.c242ps070.turuku.data.local.room.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.Date
 
 @Entity(tableName = "sleep_history")
 data class SleepHistoryEntity(
@@ -23,8 +24,8 @@ data class SleepHistoryEntity(
     val physicalActivityLevel: Int,
 
     @ColumnInfo("daily_steps")
-    val dailySteps: String,
+    val dailySteps: Int,
 
     @ColumnInfo("created_at")
-    val createdAt: String
+    val createdAt: Date = Date()
 )
