@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.c242ps070.turuku.HomeActivity
 import com.c242ps070.turuku.data.Result
-import com.c242ps070.turuku.data.remote.response.UpsertUserDataRequest
+import com.c242ps070.turuku.data.remote.request.UpsertUserDataRequest
 import com.c242ps070.turuku.databinding.ActivityPersonalize6Binding
 import com.c242ps070.turuku.utils.getChronotypeName
 import com.c242ps070.turuku.viewmodel.Personalize6ViewModel

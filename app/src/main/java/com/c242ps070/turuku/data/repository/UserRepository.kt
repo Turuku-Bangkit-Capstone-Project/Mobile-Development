@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.c242ps070.turuku.data.Result
+import com.c242ps070.turuku.data.remote.request.ChangePasswordRequest
 import com.c242ps070.turuku.data.remote.request.HistoryRequest
 import com.c242ps070.turuku.data.remote.response.ErrorResponse
 import com.c242ps070.turuku.data.remote.response.HistoryResponse
@@ -77,6 +78,22 @@ class UserRepository(
             emit(Result.Error(errorMessage))
         } catch (e: Exception) {
             Log.d("UserRepository", "getHistory: ${e.message.toString()}")
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun changePassword(request: ChangePasswordRequest): LiveData<Result<SuccessResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.changePassword(request)
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+            val errorMessage = errorBody.message ?: ""
+            emit(Result.Error(errorMessage))
+        } catch (e: Exception) {
+            Log.d("UserRepository", "changePassword: ${e.message.toString()}")
             emit(Result.Error(e.message.toString()))
         }
     }

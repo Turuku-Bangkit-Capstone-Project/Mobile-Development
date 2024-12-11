@@ -9,6 +9,7 @@ import com.c242ps070.turuku.data.local.datastore.dataStore
 import com.c242ps070.turuku.data.repository.AuthRepository
 import com.c242ps070.turuku.data.repository.MachineLearningRepository
 import com.c242ps070.turuku.data.repository.UserRepository
+import com.c242ps070.turuku.viewmodel.ChangepassViewModel
 import com.c242ps070.turuku.viewmodel.HomeViewModel
 import com.c242ps070.turuku.viewmodel.LoginViewModel
 import com.c242ps070.turuku.viewmodel.Personalize2ViewModel
@@ -67,6 +68,8 @@ class ViewModelFactory(
                     }
                 }
             } as T
+        } else if (modelClass.isAssignableFrom(ChangepassViewModel::class.java)) {
+            return userRepository?.let { ChangepassViewModel(it) } as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

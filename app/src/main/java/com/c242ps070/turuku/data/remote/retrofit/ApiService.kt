@@ -1,5 +1,6 @@
 package com.c242ps070.turuku.data.remote.retrofit
 
+import com.c242ps070.turuku.data.remote.request.ChangePasswordRequest
 import com.c242ps070.turuku.data.remote.request.HistoryRequest
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.data.remote.request.RegisterRequest
@@ -57,5 +58,5 @@ interface ApiService {
     suspend fun sleepRecommendation(): SleepRecommendationResponse
 
     @POST("changepassword")
-    suspend fun changePassword() : ChangePasswordResponse
+    suspend fun changePassword(@Body request: ChangePasswordRequest): SuccessResponse
 }
