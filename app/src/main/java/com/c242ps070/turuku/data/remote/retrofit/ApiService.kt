@@ -36,7 +36,7 @@ interface ApiService {
     suspend fun refreshToken(): RefreshTokenResponse
 
     @GET("userdata")
-    suspend fun getUserData(): UserDataResponse
+    suspend fun getUserData(): List<UserDataResponse>
 
     @POST("userdata")
     suspend fun upsertUserData(
