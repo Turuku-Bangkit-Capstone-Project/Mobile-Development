@@ -11,6 +11,9 @@ interface SleepHistoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSleepHistory(sleepHistory: SleepHistoryEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllSleepHistory(sleepHistory: List<SleepHistoryEntity>)
+
     @Query("SELECT * FROM sleep_history ORDER BY id DESC LIMIT 1")
     suspend fun getLastSleepHistory(): SleepHistoryEntity?
 
