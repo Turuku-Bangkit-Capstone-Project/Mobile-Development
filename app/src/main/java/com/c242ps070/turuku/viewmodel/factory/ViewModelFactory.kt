@@ -18,6 +18,7 @@ import com.c242ps070.turuku.viewmodel.Personalize3ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize4ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize5ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize6ViewModel
+import com.c242ps070.turuku.viewmodel.SetAlarmViewModel
 import com.c242ps070.turuku.viewmodel.SignUpViewModel
 import com.c242ps070.turuku.viewmodel.SplashScreenViewModel
 
@@ -74,6 +75,8 @@ class ViewModelFactory(
             } as T
         } else if (modelClass.isAssignableFrom(ChangepassViewModel::class.java)) {
             return userRepository?.let { ChangepassViewModel(it) } as T
+        } else if (modelClass.isAssignableFrom(SetAlarmViewModel::class.java)) {
+            return userPreference?.let { SetAlarmViewModel(it) } as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
