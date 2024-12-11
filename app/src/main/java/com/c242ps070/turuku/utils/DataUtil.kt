@@ -30,3 +30,11 @@ fun getChronotypeName(chronotype: String): String {
         else -> "Unknown"
     }
 }
+
+fun convertTimeFormat(time: String): String {
+    val parts = time.split(":")
+    val hours = parts[0].toInt()
+    val minutes = parts[1].toInt()
+
+    return "$hours Hours, $minutes Minutes"
+}
