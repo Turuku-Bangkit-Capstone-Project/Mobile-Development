@@ -32,11 +32,9 @@ class ViewModelFactory(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return authRepository?.let { authRepository ->
-                userRepository?.let { userRepository ->
-                    historyRepository?.let { historyRepository ->
-                        userPreference?.let { userPreference ->
-                            LoginViewModel(authRepository, userRepository, historyRepository, userPreference)
-                        }
+                historyRepository?.let { historyRepository ->
+                    userPreference?.let { userPreference ->
+                        LoginViewModel(authRepository, historyRepository, userPreference)
                     }
                 }
             } as T
@@ -67,8 +65,10 @@ class ViewModelFactory(
         } else if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
             return machineLearningRepository?.let { machineLearningRepository ->
                 userRepository?.let { userRepository ->
-                    userPreference?.let { userPreference ->
-                        HomeViewModel(machineLearningRepository, userRepository, userPreference)
+                    historyRepository?.let { historyRepository ->
+                        userPreference?.let { userPreference ->
+                            HomeViewModel(machineLearningRepository, userRepository, historyRepository, userPreference)
+                        }
                     }
                 }
             } as T
