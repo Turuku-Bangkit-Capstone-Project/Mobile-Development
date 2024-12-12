@@ -7,18 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.c242ps070.turuku.activity.ChangepassActivity
 import com.c242ps070.turuku.activity.LoginActivity
-import com.c242ps070.turuku.activity.ProfileActivity
 import com.c242ps070.turuku.activity.Personalize5Activity
-import com.c242ps070.turuku.data.local.datastore.UserPreference
-import com.c242ps070.turuku.data.local.datastore.dataStore
 import com.c242ps070.turuku.databinding.FragmentPreferencesBinding
-import com.c242ps070.turuku.utils.AppAuthState
 import com.c242ps070.turuku.viewmodel.PreferencesViewModel
 import com.c242ps070.turuku.viewmodel.factory.ViewModelFactory
-import kotlinx.coroutines.launch
 
 class PreferencesFragment : Fragment() {
     private var _binding: FragmentPreferencesBinding? = null
