@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.c242ps070.turuku.HomeActivity
 import com.c242ps070.turuku.databinding.ActivitySplashScreenBinding
+import com.c242ps070.turuku.utils.AppAuthState
 import com.c242ps070.turuku.viewmodel.SplashScreenViewModel
 import com.c242ps070.turuku.viewmodel.factory.ViewModelFactory
 
@@ -21,12 +22,12 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
         initViewModel()
 
-        viewModel.getUserLoggedIn().observe(this) { user ->
-            if (user.age != null && user.gender != null && user.bedTime != null && user.wakeupTime != null) {
+        viewModel.appAuthState.observe(this) { state ->
+            if (state == AppAuthState.IS_LOGGED_IN) {
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
                 finish()
-            } else if (user.token.isNotEmpty()) {
+            } else if (state == AppAuthState.IS_LOGIN_BUT_NEW_ACCOUNT) {
                 val intent = Intent(this, Personalize1Activity::class.java)
                 startActivity(intent)
                 finish()
