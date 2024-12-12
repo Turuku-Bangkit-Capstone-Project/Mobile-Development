@@ -1,12 +1,15 @@
 package com.c242ps070.turuku.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.c242ps070.turuku.R
+import com.c242ps070.turuku.HomeActivity
+import com.c242ps070.turuku.alarm.Alarm
 import com.c242ps070.turuku.databinding.ActivitySetAlarmBinding
-import com.c242ps070.turuku.viewmodel.Personalize3ViewModel
+import com.c242ps070.turuku.utils.calculateSleepTime
+import com.c242ps070.turuku.utils.timeToMillis
 import com.c242ps070.turuku.viewmodel.SetAlarmViewModel
 import com.c242ps070.turuku.viewmodel.factory.ViewModelFactory
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -24,9 +27,10 @@ class SetAlarmActivity : AppCompatActivity() {
         setContentView(binding.root)
         initViewModel()
 
-        viewModel.getUserLoggedIn().observe(this) {
-            if (it.wakeupTime != null) {
-                viewModel.setWakeupTime(it.wakeupTime)
+        viewModel.getLastHistoryRoom().observe(this) { lastHistory ->
+            if (lastHistory?.sleepRecommendation != null) {
+                val recommendation = lastHistory.sleepRecommendation
+                viewModel.setWakeupTime(calculateSleepTime(recommendation))
                 binding.tvTime.visibility = View.VISIBLE
             }
         }
@@ -38,6 +42,10 @@ class SetAlarmActivity : AppCompatActivity() {
         viewModel.wakeupTime.observe(this) { wakeupTime ->
             binding.tvTime.text = wakeupTime
             binding.btnPickTime.setText("Change time")
+        }
+
+        binding.btnContinue.setOnClickListener {
+            setTime()
         }
     }
 
@@ -75,5 +83,20 @@ class SetAlarmActivity : AppCompatActivity() {
         }
 
         picker.show(supportFragmentManager, "timePicker")
+    }
+
+    private fun setTime() {
+        if (viewModel.wakeupTime.value != null) {
+            val wakeupTime = viewModel.wakeupTime.value!!
+            viewModel.saveAlarmTime(
+                bedTime = System.currentTimeMillis(),
+                wakeupTime = timeToMillis(wakeupTime)
+            )
+            Alarm.setAlarm(this, wakeupTime)
+            ViewModelFactory.clearInstance()
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
     }
 }
