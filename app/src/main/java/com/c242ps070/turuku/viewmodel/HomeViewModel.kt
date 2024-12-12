@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.c242ps070.turuku.data.Result
+import com.c242ps070.turuku.data.local.datastore.AlarmPreference
 import com.c242ps070.turuku.data.local.datastore.UserPreference
 import com.c242ps070.turuku.data.local.datastore.UserPreferenceModel
 import com.c242ps070.turuku.data.local.room.entity.SleepHistoryEntity
@@ -19,7 +20,8 @@ class HomeViewModel(
     private val machineLearningRepository: MachineLearningRepository,
     private val userRepository: UserRepository,
     private val historyRepository: HistoryRepository,
-    private val userPreference: UserPreference
+    private val userPreference: UserPreference,
+    private val alarmPreference: AlarmPreference
 ): ViewModel() {
     fun getUserLoggedIn(): LiveData<UserPreferenceModel> = userPreference.getUser().asLiveData()
 
@@ -45,6 +47,14 @@ class HomeViewModel(
     fun updateSleepRecommendationRoom(id: Int, sleepRecommendation: String) {
         viewModelScope.launch {
             historyRepository.updateSleepRecommendationRoom(id, sleepRecommendation)
+        }
+    }
+
+    fun getAlarmTime(): LiveData<Pair<Long?, Long?>> = alarmPreference.alarmTime.asLiveData()
+
+    fun cancelAlarm() {
+        viewModelScope.launch {
+            alarmPreference.remove()
         }
     }
 }
