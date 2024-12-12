@@ -13,6 +13,7 @@ import com.c242ps070.turuku.data.remote.response.SuccessResponse
 import com.c242ps070.turuku.data.remote.retrofit.ApiService
 import com.google.gson.Gson
 import retrofit2.HttpException
+import java.util.Date
 
 class HistoryRepository(
     private val apiService: ApiService,
@@ -100,6 +101,15 @@ class HistoryRepository(
             database.sleepHistoryDao().updateSleepRecommendation(id, sleepRecommendation)
         } catch (e: Exception) {
             Log.d("HistoryRepository", "updateSleepRecommendationRoom: ${e.message.toString()}")
+        }
+    }
+
+    fun getSleepHistoryInRange(from: Date, to: Date): LiveData<List<SleepHistoryEntity>> = liveData {
+        try {
+            val historyList = database.sleepHistoryDao().getSleepHistoryInRange(from, to)
+            emit(historyList)
+        } catch (e: Exception) {
+            Log.d("HistoryRepository", "getSleepHistoryInRange: ${e.message.toString()}")
         }
     }
 }

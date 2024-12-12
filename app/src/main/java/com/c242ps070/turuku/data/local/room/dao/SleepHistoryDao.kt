@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.c242ps070.turuku.data.local.room.entity.SleepHistoryEntity
+import java.util.Date
 
 @Dao
 interface SleepHistoryDao {
@@ -25,4 +26,7 @@ interface SleepHistoryDao {
 
     @Query("UPDATE sleep_history SET sleep_recommendation = :sleepRecommendation WHERE id = :id")
     suspend fun updateSleepRecommendation(id: Int, sleepRecommendation: String)
+
+    @Query("SELECT * FROM sleep_history WHERE created_at BETWEEN :from AND :to")
+    suspend fun getSleepHistoryInRange(from: Date, to: Date): List<SleepHistoryEntity>
 }
