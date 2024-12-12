@@ -69,3 +69,9 @@ fun formatDateRange(start: Date, end: Date): String {
     val dateFormat = SimpleDateFormat("EEE, dd", Locale.getDefault())
     return "${dateFormat.format(start)} - ${dateFormat.format(end)}"
 }
+
+fun formatBedtime(bedtime: Int): String {
+    val hours = bedtime / 60
+    val minutes = bedtime % 60
+    return "$hours Hours, $minutes Minutes"
+}
