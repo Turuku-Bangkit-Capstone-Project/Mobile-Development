@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.c242ps070.turuku.data.di.Injection
+import com.c242ps070.turuku.data.local.datastore.AlarmPreference
 import com.c242ps070.turuku.data.local.datastore.UserPreference
+import com.c242ps070.turuku.data.local.datastore.alarmDataStore
 import com.c242ps070.turuku.data.local.datastore.dataStore
 import com.c242ps070.turuku.data.repository.AuthRepository
 import com.c242ps070.turuku.data.repository.HistoryRepository
@@ -27,7 +29,8 @@ class ViewModelFactory(
     private val userRepository: UserRepository? = null,
     private val machineLearningRepository: MachineLearningRepository? = null,
     private val historyRepository: HistoryRepository? = null,
-    private val userPreference: UserPreference? = null
+    private val userPreference: UserPreference? = null,
+    private val alarmPreference: AlarmPreference? = null
 ): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -68,7 +71,9 @@ class ViewModelFactory(
                 userRepository?.let { userRepository ->
                     historyRepository?.let { historyRepository ->
                         userPreference?.let { userPreference ->
-                            HomeViewModel(machineLearningRepository, userRepository, historyRepository, userPreference)
+                            alarmPreference?.let { alarmPreference ->
+                                HomeViewModel(machineLearningRepository, userRepository, historyRepository, userPreference, alarmPreference)
+                            }
                         }
                     }
                 }
@@ -76,7 +81,11 @@ class ViewModelFactory(
         } else if (modelClass.isAssignableFrom(ChangepassViewModel::class.java)) {
             return userRepository?.let { ChangepassViewModel(it) } as T
         } else if (modelClass.isAssignableFrom(SetAlarmViewModel::class.java)) {
-            return userPreference?.let { SetAlarmViewModel(it) } as T
+            return historyRepository?.let { historyRepository ->
+                alarmPreference?.let { alarmPreference ->
+                    SetAlarmViewModel(historyRepository, alarmPreference)
+                }
+            } as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
@@ -96,7 +105,8 @@ class ViewModelFactory(
                         Injection.provideUserRepository(context),
                         Injection.provideMLRepository(context),
                         Injection.provideHistoryRepository(context),
-                        UserPreference.getInstance(context.dataStore)
+                        UserPreference.getInstance(context.dataStore),
+                        AlarmPreference.getInstance(context.alarmDataStore)
                     )
                 }
             }
