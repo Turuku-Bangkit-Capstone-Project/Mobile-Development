@@ -18,19 +18,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         >
 
-        <Button
-            android:id="@+id/btnProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/button_background"
-            app:backgroundTint="@color/dark_blue_verylow"
-            android:textColor="@color/white"
-            android:fontFamily="@font/sora_regular"
-            android:drawableEnd="@drawable/ic_arrow_right"
-            android:gravity="start|center_vertical|center_horizontal"
-            />
+<!--        <Button-->
+<!--            android:id="@+id/btnProfile"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Profile"-->
+<!--            android:layout_marginBottom="15dp"-->
+<!--            android:background="@drawable/button_background"-->
+<!--            app:backgroundTint="@color/dark_blue_verylow"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:fontFamily="@font/sora_regular"-->
+<!--            android:drawableEnd="@drawable/ic_arrow_right"-->
+<!--            android:gravity="start|center_vertical|center_horizontal"-->
+<!--            />-->
 
         <Button
             android:id="@+id/btnDailyActivity"

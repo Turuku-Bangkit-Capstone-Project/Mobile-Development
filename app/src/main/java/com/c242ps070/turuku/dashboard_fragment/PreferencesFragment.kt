@@ -33,10 +33,10 @@ class PreferencesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnProfile.setOnClickListener {
-            val intent = Intent(activity, ProfileActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.btnProfile.setOnClickListener {
+//            val intent = Intent(activity, ProfileActivity::class.java)
+//            startActivity(intent)
+//        }
 
         binding.btnDailyActivity.setOnClickListener {
             val intent = Intent(activity, Personalize5Activity::class.java)
