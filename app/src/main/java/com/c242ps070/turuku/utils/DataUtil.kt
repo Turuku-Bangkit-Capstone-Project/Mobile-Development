@@ -1,27 +1,8 @@
 package com.c242ps070.turuku.utils
 
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
-
-fun getTimeHourAndMinute(time: String): List<Int> {
-    val hour = time.split(":")[0].toInt()
-    val minute = time.split(":")[1].toInt()
-    return listOf(hour, minute)
-}
-
-fun getSleepDuration(bedTime: String, wakeupTime: String): Int {
-    val format = SimpleDateFormat("HH:mm", Locale.getDefault())
-
-    val bedTimeDate = format.parse(bedTime)
-    val wakeupTimeDate = format.parse(wakeupTime)
-
-    var duration = wakeupTimeDate.time - bedTimeDate.time
-    if (duration < 0) {
-        duration += 24 * 60 * 60 * 1000
-    }
-
-    return (duration / (60 * 60 * 1000)).toInt()
-}
 
 fun getChronotypeName(chronotype: String): String {
     return when (chronotype) {
@@ -39,4 +20,38 @@ fun convertTimeFormat(time: String): String {
     val minutes = parts[1].toInt()
 
     return "$hours Hours, $minutes Minutes"
+}
+
+fun convertTimeLongToString(time: Long): String {
+    val format = SimpleDateFormat("HH:mm", Locale.getDefault())
+    return format.format(time)
+}
+
+fun calculateSleepTime(recommendation: String): String {
+    val parts = recommendation.split(":")
+    val recommendedHours = parts[0].toInt()
+    val recommendedMinutes = parts[1].toInt()
+
+    val calendar = Calendar.getInstance().apply {
+        add(get(Calendar.HOUR_OF_DAY), recommendedHours)
+        add(Calendar.MINUTE, recommendedMinutes)
+    }
+
+    val format = SimpleDateFormat("HH:mm", Locale.getDefault())
+    return format.format(calendar.time)
+}
+
+fun timeToMillis(time: String): Long {
+    val format = SimpleDateFormat("HH:mm", Locale.getDefault())
+    val date = format.parse(time) ?: return 0L
+
+    val calendar = Calendar.getInstance().apply {
+        timeInMillis = System.currentTimeMillis()
+        set(Calendar.HOUR_OF_DAY, date.hours)
+        set(Calendar.MINUTE, date.minutes)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }
+
+    return calendar.timeInMillis
 }
