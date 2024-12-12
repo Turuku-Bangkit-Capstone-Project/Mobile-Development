@@ -97,19 +97,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvLoginDesc" />
 
-                <TextView
-                    android:id="@+id/forgotPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:fontFamily="@font/sora_regular"
-                    android:text="@string/forgotPassword"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    tools:ignore="TouchTargetSizeCheck" />
+<!--                <TextView-->
+<!--                    android:id="@+id/forgotPassword"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="end"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:clickable="true"-->
+<!--                    android:focusable="true"-->
+<!--                    android:fontFamily="@font/sora_regular"-->
+<!--                    android:text="@string/forgotPassword"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="12sp"-->
+<!--                    tools:ignore="TouchTargetSizeCheck" />-->
             </LinearLayout>
 
             <Button
