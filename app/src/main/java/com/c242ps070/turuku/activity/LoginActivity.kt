@@ -16,6 +16,7 @@ import com.c242ps070.turuku.data.local.datastore.UserPreferenceModel
 import com.c242ps070.turuku.data.local.room.entity.SleepHistoryEntity
 import com.c242ps070.turuku.data.remote.request.LoginRequest
 import com.c242ps070.turuku.databinding.ActivityLoginBinding
+import com.c242ps070.turuku.utils.AppAuthState
 import com.c242ps070.turuku.viewmodel.LoginViewModel
 import com.c242ps070.turuku.viewmodel.factory.ViewModelFactory
 
@@ -97,10 +98,12 @@ class LoginActivity : AppCompatActivity() {
                     is Result.Loading -> showLoading(true)
                     is Result.Success -> {
                         if (result.data.isEmpty()) {
+                            viewModel.saveAppAuthState(AppAuthState.IS_LOGIN_BUT_NEW_ACCOUNT)
                             val intent = Intent(this, Personalize1Activity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
                         } else {
+                            viewModel.saveAppAuthState(AppAuthState.IS_LOGGED_IN)
                             val histories = result.data.map {
                                 SleepHistoryEntity(
                                     id = it.id,

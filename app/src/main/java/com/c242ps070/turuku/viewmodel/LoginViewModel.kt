@@ -13,6 +13,7 @@ import com.c242ps070.turuku.data.remote.response.HistoryResponse
 import com.c242ps070.turuku.data.remote.response.LoginResponse
 import com.c242ps070.turuku.data.repository.AuthRepository
 import com.c242ps070.turuku.data.repository.HistoryRepository
+import com.c242ps070.turuku.utils.AppAuthState
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
@@ -36,6 +37,12 @@ class LoginViewModel(
     fun insertHistories(histories: List<SleepHistoryEntity>) {
         viewModelScope.launch {
             historyRepository.insertAllSleepHistoryRoom(histories)
+        }
+    }
+
+    fun saveAppAuthState(state: AppAuthState) {
+        viewModelScope.launch {
+            userPreference.saveAppAuthState(state)
         }
     }
 }
