@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.c242ps070.turuku.utils.AppAuthState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -25,6 +26,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     private val USER_DAILY_STEPS = intPreferencesKey(DAILY_STEPS)
     private val USER_CHRONOTYPE = stringPreferencesKey(CHRONOTYPE)
     private val USER_REFRESH_TOKEN = stringPreferencesKey(REFRESH_TOKEN)
+    private val USER_APP_AUTH_STATE = stringPreferencesKey(APP_AUTH_STATE)
 
     fun getUser(): Flow<UserPreferenceModel> {
         return dataStore.data.map { preferences ->
@@ -47,6 +49,11 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     val refreshToken: Flow<String?>
         get() = dataStore.data.map { preferences ->
             preferences[USER_REFRESH_TOKEN]
+        }
+
+    val appAuthState: Flow<AppAuthState>
+        get() = dataStore.data.map { preferences ->
+            AppAuthState.valueOf(preferences[USER_APP_AUTH_STATE] ?: AppAuthState.IS_NOT_LOGGED_IN.name)
         }
 
     suspend fun saveRefreshToken(refreshToken: String) {
@@ -106,6 +113,12 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    suspend fun saveAppAuthState(state: AppAuthState) {
+        dataStore.edit { preferences ->
+            preferences[USER_APP_AUTH_STATE] = state.name
+        }
+    }
+
     suspend fun delete() {
         dataStore.edit { preferences ->
             preferences.clear()
@@ -136,5 +149,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         const val DAILY_STEPS = "daily_steps"
         const val CHRONOTYPE = "chronotype"
         const val REFRESH_TOKEN = "refresh_token"
+        const val APP_AUTH_STATE = "app_auth_state"
     }
 }

@@ -1,5 +1,7 @@
 package com.c242ps070.turuku.data.local.datastore
 
+import com.c242ps070.turuku.utils.AppAuthState
+
 data class UserPreferenceModel(
     val id: Int? = null,
     val name: String? = null,
@@ -12,5 +14,6 @@ data class UserPreferenceModel(
     val physicalActivity: Int? = null,
     val dailySteps: Int? = null,
     val chronotype: String? = null,
-    val refreshToken: String? = null
+    val refreshToken: String? = null,
+    val appAuthState: AppAuthState = AppAuthState.IS_NOT_LOGGED_IN
 )
