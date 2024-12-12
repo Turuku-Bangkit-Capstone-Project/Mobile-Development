@@ -7,7 +7,7 @@
 
   <p align="center">
     <a href="https://skillicons.dev">
-      <img src="https://skillicons.dev/icons?i=kotlin,androidstudio,figma,postman" />
+      <img src="https://skillicons.dev/icons?i=kotlin,androidstudio,figma,postman,okhttp,square" />
     </a>
   </p>
 
