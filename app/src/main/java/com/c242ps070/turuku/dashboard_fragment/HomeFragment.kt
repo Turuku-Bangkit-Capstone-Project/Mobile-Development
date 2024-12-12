@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.c242ps070.turuku.R
 import com.c242ps070.turuku.activity.SetAlarmActivity
+import com.c242ps070.turuku.alarm.Alarm
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.databinding.FragmentHomeBinding
 import com.c242ps070.turuku.utils.convertTimeFormat
+import com.c242ps070.turuku.utils.convertTimeLongToString
 import com.c242ps070.turuku.viewmodel.HomeViewModel
 import com.c242ps070.turuku.viewmodel.factory.ViewModelFactory
 
@@ -46,8 +49,14 @@ class HomeFragment : Fragment() {
             }
 
             binding?.sleepButton?.setOnClickListener {
-                startActivity(Intent(context, SetAlarmActivity::class.java))
+                if (binding?.bedtimeWaketimeContainer?.visibility == View.GONE) {
+                    startActivity(Intent(context, SetAlarmActivity::class.java))
+                } else {
+                    cancelAlarm()
+                }
             }
+
+            getAlarmState()
         }
     }
 
@@ -104,6 +113,39 @@ class HomeFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         binding?.loading?.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding?.optimalBedtime?.visibility = if (isLoading) View.GONE else View.VISIBLE
+    }
+
+    private fun getAlarmState() {
+        viewModel?.getAlarmTime()?.observe(viewLifecycleOwner) { alarmTime: Pair<Long?, Long?> ->
+            if (alarmTime.first != null && alarmTime.second != null) {
+                binding?.bedtimeWaketimeContainer?.visibility = View.VISIBLE
+                binding?.ringPrediction?.setText(
+                    "Your Alarm will ring at ${convertTimeLongToString(alarmTime.first!!)}"
+                )
+                binding?.waketime?.text = convertTimeLongToString(alarmTime.first!!)
+                binding?.bedtime?.text = convertTimeLongToString(alarmTime.second!!)
+                binding?.sleepButtonText?.setText("Wake Up Now")
+                binding?.sleepButtonIcon?.setImageResource(R.drawable.ic_alarm)
+
+                binding?.sleepButton?.setOnClickListener {
+                    cancelAlarm()
+                }
+            } else {
+                binding?.bedtimeWaketimeContainer?.visibility = View.GONE
+                binding?.ringPrediction?.visibility = View.GONE
+                binding?.sleepButtonText?.setText("Sleep Now")
+                binding?.sleepButtonIcon?.setImageResource(R.drawable.ic_bedtime)
+
+                binding?.sleepButton?.setOnClickListener {
+                    startActivity(Intent(context, SetAlarmActivity::class.java))
+                }
+            }
+        }
+    }
+
+    private fun cancelAlarm() {
+        viewModel?.cancelAlarm()
+        Alarm.cancelAlarm(requireContext())
     }
 
     override fun onDestroyView() {
