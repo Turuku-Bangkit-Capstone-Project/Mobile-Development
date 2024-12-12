@@ -20,9 +20,11 @@ import com.c242ps070.turuku.viewmodel.Personalize3ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize4ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize5ViewModel
 import com.c242ps070.turuku.viewmodel.Personalize6ViewModel
+import com.c242ps070.turuku.viewmodel.PreferencesViewModel
 import com.c242ps070.turuku.viewmodel.SetAlarmViewModel
 import com.c242ps070.turuku.viewmodel.SignUpViewModel
 import com.c242ps070.turuku.viewmodel.SplashScreenViewModel
+import com.c242ps070.turuku.viewmodel.StaticsViewModel
 
 class ViewModelFactory(
     private val authRepository: AuthRepository? = null,
@@ -84,6 +86,16 @@ class ViewModelFactory(
             return historyRepository?.let { historyRepository ->
                 alarmPreference?.let { alarmPreference ->
                     SetAlarmViewModel(historyRepository, alarmPreference)
+                }
+            } as T
+        } else if (modelClass.isAssignableFrom(StaticsViewModel::class.java)) {
+            return historyRepository?.let { StaticsViewModel(it) } as T
+        } else if (modelClass.isAssignableFrom(PreferencesViewModel::class.java)) {
+            return authRepository?.let { authRepository ->
+                historyRepository?.let { historyRepository ->
+                    userPreference?.let { userPreference ->
+                        PreferencesViewModel(authRepository, historyRepository, userPreference)
+                    }
                 }
             } as T
         }
