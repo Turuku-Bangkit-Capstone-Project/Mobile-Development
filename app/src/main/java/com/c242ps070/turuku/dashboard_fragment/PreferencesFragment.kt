@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.c242ps070.turuku.activity.ChangepassActivity
 import com.c242ps070.turuku.activity.LoginActivity
@@ -14,19 +15,23 @@ import com.c242ps070.turuku.activity.Personalize5Activity
 import com.c242ps070.turuku.data.local.datastore.UserPreference
 import com.c242ps070.turuku.data.local.datastore.dataStore
 import com.c242ps070.turuku.databinding.FragmentPreferencesBinding
+import com.c242ps070.turuku.utils.AppAuthState
+import com.c242ps070.turuku.viewmodel.PreferencesViewModel
+import com.c242ps070.turuku.viewmodel.factory.ViewModelFactory
 import kotlinx.coroutines.launch
 
 class PreferencesFragment : Fragment() {
     private var _binding: FragmentPreferencesBinding? = null
     private val binding get() = _binding!!
-    private lateinit var userPreference: UserPreference
+    private lateinit var viewModel: PreferencesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPreferencesBinding.inflate(inflater, container, false)
-        userPreference = UserPreference.getInstance(requireContext().dataStore)
+        val factory = ViewModelFactory.getInstance(requireContext())
+        viewModel = ViewModelProvider(this, factory)[PreferencesViewModel::class.java]
         return binding.root
     }
 
@@ -49,12 +54,11 @@ class PreferencesFragment : Fragment() {
         }
 
         binding.btnSignOut.setOnClickListener {
-            lifecycleScope.launch {
-                userPreference.delete()
-                val intent = Intent(activity, LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-            }
+            viewModel.logout()
+            viewModel.clearLocalData()
+            val intent = Intent(activity, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 
