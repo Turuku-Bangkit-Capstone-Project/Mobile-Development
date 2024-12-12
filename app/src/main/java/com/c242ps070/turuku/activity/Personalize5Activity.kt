@@ -63,6 +63,7 @@ class Personalize5Activity : AppCompatActivity() {
                             )
                         )
                         showLoading(false)
+                        ViewModelFactory.clearInstance()
                         startActivity(Intent(this, Personalize6Activity::class.java))
                     }
                     is Result.Error -> {

@@ -26,10 +26,10 @@ class Personalize6Activity : AppCompatActivity() {
         getChronotype()
 
         binding.btnContinueToHome.setOnClickListener {
+            ViewModelFactory.clearInstance()
             val intent = Intent(this@Personalize6Activity, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
-            ViewModelFactory.clearInstance()
         }
     }
 
