@@ -2,6 +2,7 @@ package com.c242ps070.turuku.utils
 
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 fun getChronotypeName(chronotype: String): String {
@@ -54,4 +55,17 @@ fun timeToMillis(time: String): Long {
     }
 
     return calendar.timeInMillis
+}
+
+fun getTodayAndYesterdayDate(): Pair<Date, Date> {
+    val today = Calendar.getInstance().time
+    val calendar = Calendar.getInstance()
+    calendar.add(Calendar.DAY_OF_YEAR, -1)
+    val yesterday = calendar.time
+    return Pair(today, yesterday)
+}
+
+fun formatDateRange(start: Date, end: Date): String {
+    val dateFormat = SimpleDateFormat("EEE, dd", Locale.getDefault())
+    return "${dateFormat.format(start)} - ${dateFormat.format(end)}"
 }
