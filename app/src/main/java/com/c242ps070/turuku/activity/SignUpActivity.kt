@@ -1,10 +1,15 @@
 package com.c242ps070.turuku.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
+import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.c242ps070.turuku.R
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.remote.request.RegisterRequest
 import com.c242ps070.turuku.databinding.ActivitySignUpBinding
@@ -28,6 +33,9 @@ class SignUpActivity : AppCompatActivity() {
         binding.signUpButton.setOnClickListener{
             signUp()
         }
+
+        togglePassword()
+        toggleConfirmPassword()
     }
 
     private fun signUp() {
@@ -50,6 +58,7 @@ class SignUpActivity : AppCompatActivity() {
                         is Result.Loading -> showLoading(true)
                         is Result.Success -> {
                             showLoading(false)
+                            Toast.makeText(this@SignUpActivity, result.data.message, Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)
                         }
@@ -71,5 +80,47 @@ class SignUpActivity : AppCompatActivity() {
         binding.inputSignUpPassword.isEnabled = !isLoading
         binding.inputSignUpConfirmPassword.isEnabled = !isLoading
         binding.signUpButton.text = if (isLoading) "Signing up..." else "Sign Up"
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun togglePassword() {
+        with(binding.inputSignUpPassword) {
+            setOnTouchListener { _, event ->
+                if (event.action == MotionEvent.ACTION_UP) {
+                    if (event.rawX >= (right - compoundDrawables[2].bounds.width())) {
+                        if (transformationMethod == PasswordTransformationMethod.getInstance()) {
+                            transformationMethod = HideReturnsTransformationMethod.getInstance()
+                            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_visibility, 0)
+                        } else {
+                            transformationMethod = PasswordTransformationMethod.getInstance()
+                            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_visibility_off, 0)
+                        }
+                        return@setOnTouchListener true
+                    }
+                }
+                return@setOnTouchListener false
+            }
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun toggleConfirmPassword() {
+        with(binding.inputSignUpConfirmPassword) {
+            setOnTouchListener { _, event ->
+                if (event.action == MotionEvent.ACTION_UP) {
+                    if (event.rawX >= (right - compoundDrawables[2].bounds.width())) {
+                        if (transformationMethod == PasswordTransformationMethod.getInstance()) {
+                            transformationMethod = HideReturnsTransformationMethod.getInstance()
+                            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_visibility, 0)
+                        } else {
+                            transformationMethod = PasswordTransformationMethod.getInstance()
+                            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock, 0, R.drawable.ic_visibility_off, 0)
+                        }
+                        return@setOnTouchListener true
+                    }
+                }
+                return@setOnTouchListener false
+            }
+        }
     }
 }
