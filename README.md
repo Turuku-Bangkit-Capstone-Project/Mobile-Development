@@ -26,6 +26,7 @@
 - [Room Database](https://developer.android.com/reference/kotlin/androidx/room/RoomDatabase) - Local Database
 - [Alarm Manager](https://developer.android.com/reference/android/app/AlarmManager) - Access to the system alarm services
 - [Datastore](https://developer.android.com/topic/libraries/architecture/datastore?hl=id) - Data storage that allows to store key-value pairs or objects
+- [Postman](https://www.postman.com/) - Single platform for collaborative API development
 
 ## Architecture
 Clean Architecture
