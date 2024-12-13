@@ -12,6 +12,7 @@ import com.c242ps070.turuku.data.remote.response.ChronotypeResponse
 import com.c242ps070.turuku.data.remote.response.SuccessResponse
 import com.c242ps070.turuku.data.repository.MachineLearningRepository
 import com.c242ps070.turuku.data.repository.UserRepository
+import com.c242ps070.turuku.utils.AppAuthState
 import kotlinx.coroutines.launch
 
 class Personalize6ViewModel(
@@ -33,4 +34,10 @@ class Personalize6ViewModel(
     fun insertUserData(
         request: UpsertUserDataRequest
     ): LiveData<Result<SuccessResponse>> = userRepository.upsertUserData(request)
+
+    fun updateAppAuthState(state: AppAuthState) {
+        viewModelScope.launch {
+            userPreference.saveAppAuthState(state)
+        }
+    }
 }

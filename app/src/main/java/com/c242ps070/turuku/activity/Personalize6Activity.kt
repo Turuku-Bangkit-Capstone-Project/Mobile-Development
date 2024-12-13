@@ -10,6 +10,7 @@ import com.c242ps070.turuku.HomeActivity
 import com.c242ps070.turuku.data.Result
 import com.c242ps070.turuku.data.remote.request.UpsertUserDataRequest
 import com.c242ps070.turuku.databinding.ActivityPersonalize6Binding
+import com.c242ps070.turuku.utils.AppAuthState
 import com.c242ps070.turuku.utils.getChronotypeName
 import com.c242ps070.turuku.viewmodel.Personalize6ViewModel
 import com.c242ps070.turuku.viewmodel.factory.ViewModelFactory
@@ -27,6 +28,7 @@ class Personalize6Activity : AppCompatActivity() {
 
         binding.btnContinueToHome.setOnClickListener {
             ViewModelFactory.clearInstance()
+            viewModel.updateAppAuthState(AppAuthState.IS_LOGGED_IN)
             val intent = Intent(this@Personalize6Activity, HomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
