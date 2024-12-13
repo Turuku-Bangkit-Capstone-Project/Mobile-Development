@@ -34,5 +34,5 @@ Clean Architecture
 ## Design Pattern
 Model-View-ViewModel (MVVM)
 
-## Others
-Soon...
+## DOWNLOAD APPLICATION 📩
+[Google Drive Turuku Application](https://drive.usercontent.google.com/download?id=1NS6509Z8ymHDlM5yJWb-R4AXoWJiykCL&export=download&authuser=0)
